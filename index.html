@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Prévia -- LP Canopy Armor MKK Off Road (refeita, retorno 29/09)</title>
+<!--
+  Gerado por gerar_pacote.py -- NÃO editar à mão (as mudanças se perdem no próximo
+  "python gerar_pacote.py"). Edite as fontes em secoes/, 1-css.css, 3-body.html.
+
+  Prévia PÚBLICA para o dono/dona conferir a refeitura antes de colar no RD. Por isso:
+  sem GTM, sem nenhum pixel/rastreamento, noindex/nofollow, e o formulário abaixo é uma
+  IMITAÇÃO com o mesmo HTML/classes que o RD gera de verdade (framework "Bricks"), com
+  o envio desativado (botão disabled). Não é a página que entra no ar -- ela cola em
+  para-colar/ dentro do editor do RD.
+-->
+<style>
+html, body { margin:0; background:#fff; }
+</style>
+<style>
+/* ===== 1-css.css gerado (caminhos relativos, img/ ao lado deste arquivo) ===== */
+/* Consumidor: campo "CSS" da Edição Avançada da LP "Canopy Armor" no RD Station
+   Marketing. Cole este arquivo inteiro nesse campo. Gerado a partir das fontes em
+   docs/integracoes/rd-station/landing-pages/canopy-rd/ (mesmo padrão de
+   ../barracas-rd-cinematic/, que nasceu como réplica do visual desta própria LP -- aqui
+   o caminho é o INVERSO: é a LP real do Canopy sendo refeita, com o retorno da dona
+   (29/09/2026): só o Header+Hero ficam pretos, o resto do site vira fundo BRANCO, e o
+   scroll precisa cair pelo menos 30%. Ver canopy-rd-revisao-dona.md para o retorno
+   completo e a tabela seção-a-seção.
+
+   Prefixo de classe: mkc- ("MKK Cinematic"), mesmo prefixo da referência em
+   barracas-rd-cinematic/ -- é a mesma linguagem visual, então não há motivo pra um
+   prefixo novo (as duas LPs nunca convivem na mesma página).
+
+   ESTRUTURA DESTE ARQUIVO:
+   1. Fontes (Google Fonts) + reset escopado
+   2. Tokens -- CLARO por padrão (era escuro no Cinematic original); Header/Hero usam
+      cor literal (não variável), de propósito, pra continuar pretos mesmo com os
+      tokens globais em modo claro.
+   3-18. Componentes, na ordem em que aparecem na página. */
+
+/* ---------- fontes ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ---------- reset escopado (:where() -- especificidade zero) ---------- */
+:where(.mkc-section, .mkc-section *, .mkc-section *::before, .mkc-section *::after) {
+  box-sizing: border-box;
+}
+.mkc-section {
+  margin: 0;
+  padding: 0;
+  font-family: var(--mkc-body);
+  -webkit-font-smoothing: antialiased;
+}
+:where(.mkc-section) :where(h1, h2, h3, h4, p, ul, li) { margin: 0; padding: 0; list-style: none; }
+:where(.mkc-section) :where(img) { max-width: 100%; height: auto; display: block; border: 0; }
+:where(.mkc-section) :where(a) { text-decoration: none; color: inherit; }
+:where(.mkc-section) :where(button) { font-family: inherit; }
+
+html { scroll-behavior: smooth; }
+html, body { max-width: 100%; overflow-x: hidden; background: #fff; }
+
+/* ---------- tokens -- CLARO por padrão a partir daqui (retorno da dona, 29/09):
+   só Header+Hero continuam escuros, e usam cor literal, não estas variáveis. ---------- */
+:root {
+  --mkc-bg: #ffffff;
+  --mkc-surface: #f6f5f2;       /* cinza claríssimo pontual, só pra separar alguma faixa */
+  --mkc-surface-2: #ffffff;
+  --mkc-text: #16171a;
+  --mkc-muted: #5b5e63;
+  --mkc-accent: #f2b705;
+  --mkc-accent-2: #f47700;
+  --mkc-line: rgba(20, 20, 20, 0.12);
+  --mkc-radius: 2px;
+  --mkc-max: 1240px;
+  --mkc-pad: clamp(20px, 4vw, 56px);
+  --mkc-display: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+  --mkc-body: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ---------- utilitário: faixa de ponta a ponta (rompe os 960px do RD) ---------- */
+.mkc-full {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+.mkc-inner { width: min(var(--mkc-max), calc(100% - (var(--mkc-pad) * 2))); margin-inline: auto; }
+
+/* ---------- textura de ruído -- ELEMENTO REAL de hoje (confirmado no DOM do build,
+   classe .noise, opacity:.035, position:fixed cobrindo a página inteira). Mantido: a
+   dona pediu cor e comprimento, não a textura. Funciona igual sobre fundo claro. ---------- */
+.mkc-noise {
+  pointer-events: none;
+  opacity: .035;
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+}
+
+/* ---------- botão ---------- */
+.mkc-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 14px;
+  min-height: 58px; background: transparent; border: 1px solid transparent;
+  color: inherit; cursor: pointer; font-family: var(--mkc-display);
+  letter-spacing: .045em; text-transform: uppercase; padding: 0 26px;
+  font-size: 1.07rem; font-weight: 800; text-decoration: none;
+  transition: transform .2s, background-color .2s, box-shadow .2s;
+}
+.mkc-btn:hover, .mkc-btn:focus { transform: scale(1.04); }
+.mkc-btn--primary { background: var(--mkc-accent); color: #10110f; box-shadow: 0 12px 34px rgba(242,183,5,.28); }
+.mkc-btn--dark { background: #16171a; color: #fff; }
+.mkc-btn--ghost { border-color: rgba(22,23,26,.3); color: var(--mkc-text); }
+@media (max-width: 767px) {
+  .mkc-btn { font-size: .93rem; min-height: 50px; padding: 0 20px; }
+}
+
+/* ---------- cabeçalho de seção: eyebrow + H2 + subtítulo (compactado: menos
+   margem que o Cinematic original -- contribui pro corte de 30% de scroll).
+   O eyebrow em si (fonte, tamanho, tracking e o tracinho ::before de 30x2px) é
+   IDÊNTICO ao de hoje (medido via getComputedStyle em .eyebrow) -- só a COR muda
+   fora do Hero, pra não repetir o dourado como texto pequeno sobre fundo branco
+   (contraste ruim); dentro do Hero o eyebrow volta ao dourado real, ver §02. ---------- */
+.mkc-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--mkc-accent-2); font-family: var(--mkc-display);
+  letter-spacing: .18em; text-transform: uppercase; font-size: .9rem; font-weight: 700;
+}
+.mkc-eyebrow::before { content: ""; background: currentColor; width: 30px; height: 2px; flex: none; }
+.mkc-heading { max-width: 720px; margin-bottom: 34px; }
+.mkc-heading--center { text-align: center; margin-inline: auto; }
+.mkc-heading h2 {
+  font-family: var(--mkc-display); letter-spacing: -.03em; text-transform: uppercase;
+  margin: 10px 0 12px; font-size: clamp(2.3rem, 3.8vw, 3.7rem); font-weight: 800;
+  line-height: .96; color: var(--mkc-text);
+}
+.mkc-heading p { max-width: 640px; color: var(--mkc-muted); margin: 0; font-size: 1rem; line-height: 1.6; }
+.mkc-heading--center p { margin-inline: auto; }
+:where(.mkc-section) h3 {
+  font-family: var(--mkc-display); text-transform: uppercase; margin: 0 0 10px;
+  font-size: 1.45rem; line-height: 1.05; color: var(--mkc-text);
+}
+@media (max-width: 767px) {
+  .mkc-heading { margin-bottom: 24px; }
+  .mkc-heading h2 { font-size: clamp(2.1rem, 10vw, 2.9rem); }
+}
+
+/* subcabeçalho -- usado DENTRO da Vitrine (módulo mesclado): menor que .mkc-heading,
+   pra não repetir 3x o peso visual de um H2 de seção inteira dentro do mesmo módulo,
+   mas mantendo o título ORIGINAL de cada seção-de-origem bem legível (pedido da dona:
+   "manter os títulos originais visíveis dentro do módulo"). */
+.mkc-subhead { max-width: 640px; margin-bottom: 18px; }
+.mkc-subhead .mkc-eyebrow { font-size: .74rem; }
+.mkc-subhead h3 {
+  font-family: var(--mkc-display); text-transform: uppercase; letter-spacing: -.02em;
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem); font-weight: 800; line-height: 1; margin: 6px 0 8px;
+  color: var(--mkc-text);
+}
+.mkc-subhead p { color: var(--mkc-muted); font-size: .92rem; line-height: 1.55; max-width: 560px; margin: 0; }
+
+/* =========================================================================
+   01. HEADER -- continua PRETO/transparente, flutua sobre o Hero (não usa os
+   tokens globais, que agora são claros: cor literal de propósito).
+   ========================================================================= */
+.mkc-header {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 20; background: transparent;
+  border-bottom: 1px solid rgba(255,255,255,.16);
+  padding: 0 var(--mkc-pad); height: 92px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.mkc-header__inner { width: 100%; max-width: var(--mkc-max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.mkc-header__brand { display: flex; align-items: center; gap: 12px; }
+.mkc-header__logo { width: 30px; flex: 0 0 auto; }
+.mkc-header__brandtext { font-family: var(--mkc-display); font-size: 1.15rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: #fff; }
+.mkc-header__nav { display: flex; align-items: center; gap: 24px; }
+/* Links normais do menu: fonte de CORPO (Inter), Title Case -- IGUAL a hoje
+   (.main-nav a não tem font-family nem text-transform próprios, herda o padrão
+   Inter/none do body). Só o CTA usa a fonte de destaque (Barlow Condensed) e
+   maiúsculas -- ver .mkc-header__cta logo abaixo. */
+.mkc-header__link {
+  font-family: var(--mkc-body); color: #fff; font-size: .9rem; font-weight: 600;
+  text-transform: none; letter-spacing: normal; opacity: .9; transition: opacity .2s, color .2s;
+}
+.mkc-header__link:hover { opacity: 1; color: var(--mkc-accent); }
+.mkc-header__cta {
+  border: 1px solid var(--mkc-accent); font-family: var(--mkc-display);
+  letter-spacing: .08em; text-transform: uppercase; padding: 13px 18px; font-size: .95rem;
+  color: #fff; flex: 0 0 auto; opacity: 1;
+}
+@media (max-width: 900px) { .mkc-header__nav a:not(.mkc-header__cta) { display: none; } }
+@media (max-width: 767px) { .mkc-header { height: 72px; } .mkc-header__cta { padding: 10px 14px; font-size: .82rem; } }
+
+/* =========================================================================
+   02. HERO -- continua PRETO (única faixa escura da página, elogiada pela
+   dona: "fundo preto impactante"). Cada valor abaixo foi medido com
+   getComputedStyle direto na página real (Hero, .hero-image, #hero-title,
+   .eyebrow, .button, .proof-rail) -- ALTURA, ENQUADRAMENTO DA FOTO, DEGRADÊ,
+   TIPOGRAFIA e ESPAÇAMENTOS são os de hoje, não reinterpretados. Se algum dia
+   isso "roubar" da meta de -30% de scroll, a compensação é em OUTRA seção,
+   nunca aqui (decisão do dono).
+   ========================================================================= */
+.mkc-hero { position: relative; background: #080909; min-height: min(900px, 100vh); overflow: hidden; }
+.mkc-hero__bg {
+  position: absolute; inset: 0;
+  /* transform:scaleX(-1) -- ISTO NÃO É DECORAÇÃO: no site real, a foto do Hero
+     entra com uma animação de entrada (heroRevealFlipped) cujo estado FINAL
+     (fill-mode:both, então permanece assim em repouso) é a camada inteira
+     espelhada na horizontal. Sem espelhar aqui também, o degradê (que é
+     assimétrico -- mais escuro de um lado) sai visualmente invertido em relação
+     à foto, e a capota/parte iluminada do veículo cai do lado errado (foi
+     exatamente o defeito relatado: "o enquadramento esconde a capota").
+     Confirmado via getComputedStyle + @keyframes na página real, 29/09. */
+  transform: scaleX(-1);
+  background-image:
+    linear-gradient(270deg, rgba(5,5,5,.98) 0%, rgba(5,5,5,.87) 34%, rgba(5,5,5,.18) 68%, rgba(5,5,5,.36) 100%),
+    url("img/hero-canopy.webp");
+  background-position: 50%; background-size: cover;
+}
+.mkc-hero__content {
+  position: relative; min-height: min(900px, 100vh); display: flex; align-items: center;
+  padding: 112px var(--mkc-pad) 120px; max-width: var(--mkc-max); margin: 0 auto;
+}
+.mkc-hero__copy { position: relative; z-index: 2; width: min(620px, 52%); }
+/* h1: linha 1 ("Canopy Armor —") entra como <span> menor (.57em, line-height:1,
+   tracking quase neutro) -- linha 2 ("Sua picape pronta para ir além.") no
+   tamanho cheio, caixa MISTA (nunca uppercase: text-transform:none). */
+.mkc-hero__title {
+  max-width: 650px; font-family: var(--mkc-display); letter-spacing: -.035em;
+  margin: 25px 0 18px; font-size: clamp(4.5rem, 6.6vw, 6.7rem); font-weight: 800;
+  line-height: .84; color: #fff; text-transform: none;
+}
+.mkc-hero__title span { color: inherit; letter-spacing: .01em; font-size: .57em; line-height: 1; display: block; text-transform: uppercase; }
+.mkc-hero__sub { color: #d2d0cb; max-width: 520px; margin: 0; font-size: 1.25rem; line-height: 1.65; }
+.mkc-hero__actions { display: flex; align-items: center; gap: 24px; margin-top: 31px; flex-wrap: wrap; }
+.mkc-hero__proof { color: #d2d0cb; display: flex; align-items: center; gap: 9px; font-size: .85rem; }
+.mkc-hero__rail {
+  position: absolute; left: 0; bottom: 28px; z-index: 2; width: min(790px, 66%);
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  background: rgba(4,5,5,.68); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,.22);
+}
+.mkc-hero__rail span {
+  display: flex; align-items: center; gap: 12px; min-height: 72px; padding: 12px 21px;
+  border-right: 1px solid rgba(255,255,255,.16); color: #fff; font-size: .9rem;
+}
+.mkc-hero__rail span:last-child { border-right: 0; }
+.mkc-hero__rail svg { width: 27px; color: var(--mkc-accent); flex: none; }
+@media (max-width: 1024px) { .mkc-hero__copy { width: 62%; } .mkc-hero__rail { width: calc(100% - 40px); } }
+@media (max-width: 767px) {
+  /* Mobile usa altura FIXA (860px), não min(vh) -- igual a hoje -- e o texto
+     ancora embaixo (align-items:flex-end); o degradê aqui é de cima pra baixo
+     (claro no topo, quase opaco embaixo), com hero-mobile.webp. */
+  .mkc-hero { min-height: 860px; }
+  /* No mobile a foto NÃO é espelhada (a animação real usa outro keyframe,
+     heroReveal, sem scaleX) -- por isso o reset explícito abaixo. */
+  .mkc-hero__bg { transform: none; background-image: linear-gradient(rgba(5,5,5,.16) 0%, rgba(5,5,5,.82) 52%, rgba(5,5,5,.98) 100%), url("img/hero-mobile.webp"); background-position: 50% 35%; }
+  .mkc-hero__content { align-items: flex-end; min-height: 860px; padding: 120px 20px 145px; }
+  .mkc-hero__copy { width: 100%; }
+  .mkc-hero__title { font-size: clamp(3.6rem, 17vw, 5.2rem); }
+  .mkc-hero__sub { font-size: 1rem; line-height: 1.55; }
+  .mkc-hero__actions { flex-direction: column; align-items: stretch; gap: 15px; }
+  .mkc-hero__proof { display: none; }
+  .mkc-hero__rail { grid-template-columns: 1fr; width: 100%; bottom: 20px; }
+  .mkc-hero__rail span { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.14); font-size: .75rem; min-height: 38px; padding: 7px 12px; }
+  .mkc-hero__rail span:last-child { border-bottom: 0; }
+  .mkc-hero__rail svg { width: 19px; }
+}
+
+/* O eyebrow (traço + texto) é dourado dentro do Hero (fundo preto, mesma cor de
+   hoje) -- fora do Hero ele usa a cor laranja definida em .mkc-eyebrow acima,
+   escolhida pra funcionar sobre fundo branco (o dourado real, #F2B705, tem
+   contraste ruim como texto pequeno sobre branco). */
+.mkc-hero .mkc-eyebrow { color: var(--mkc-accent); }
+
+/* =========================================================================
+   BASE DE SEÇÃO -- CLARA (branco / cinza claríssimo pontual). Padding reduzido
+   frente ao Cinematic original (era clamp(80,9vw,132)) -- contribui pro corte de
+   scroll pedido pela dona, em TODAS as seções, não só nas 2 marcadas p/ compactar.
+   ========================================================================= */
+.mkc-section-bg { background: var(--mkc-bg); padding: clamp(36px, 4.2vw, 66px) 0; position: relative; color: var(--mkc-text); }
+/* --surface NÃO tinge mais a seção inteira (pedido da dona: "o restante com o
+   fundo branco padrão de todo site" -- var(--mkc-surface), o cinza claríssimo,
+   virava bege visível em faixas inteiras). O modificador continua existindo nos
+   arquivos de seção (marca de intenção/histórico), mas agora é um no-op: toda
+   seção é branca. --mkc-surface segue vivo só dentro de CARTÕES (ex.:
+   .mkc-pain__card, .mkc-feature__media, .mkc-strip__item), onde ajuda a
+   diferenciar um cartão/placeholder do fundo branco ao redor. */
+.mkc-section-bg--surface { background: var(--mkc-bg); }
+@media (max-width: 767px) { .mkc-section-bg { padding: 48px 0; } }
+
+/* =========================================================================
+   03. DIFERENCIAIS -- 3 cartões numerados
+   ========================================================================= */
+.mkc-pain { border-top: 1px solid var(--mkc-line); }
+.mkc-pain__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.mkc-pain__card {
+  position: relative; overflow: hidden; border: 1px solid var(--mkc-line);
+  background: var(--mkc-surface); border-radius: var(--mkc-radius);
+  min-height: 250px; padding: 30px;
+}
+.mkc-pain__number { position: absolute; top: 18px; right: 22px; color: rgba(20,20,20,.08); font-family: var(--mkc-display); font-size: 3.6rem; font-weight: 800; }
+.mkc-pain__icon { width: 28px; height: 28px; color: var(--mkc-accent-2); margin-bottom: 16px; }
+.mkc-pain__card p { color: var(--mkc-muted); line-height: 1.55; font-size: .95rem; }
+.mkc-pain__card strong { display: block; margin-top: 16px; font-size: .85rem; color: var(--mkc-accent-2); font-weight: 700; }
+@media (max-width: 1024px) {
+  .mkc-pain__grid { grid-template-columns: 1fr 1fr; }
+  .mkc-pain__grid > *:last-child { grid-column: 1 / -1; }
+}
+@media (max-width: 767px) {
+  .mkc-pain__grid { grid-template-columns: 1fr; }
+  .mkc-pain__grid > *:last-child { grid-column: auto; }
+  .mkc-pain__card { min-height: 0; padding: 24px; }
+}
+
+/* =========================================================================
+   04. REVIEW / VÍDEO -- placeholder real do Canopy (foto + play, sem link do
+   YouTube ainda: "Link do review a inserir", exatamente como hoje -- não é um
+   vídeo próprio tocando, então não simulamos autoplay aqui).
+   ========================================================================= */
+.mkc-videoshow__layout { display: grid; grid-template-columns: .85fr 1.15fr; align-items: center; gap: clamp(36px, 6vw, 80px); }
+.mkc-videoshow__checklist { display: grid; gap: 11px; color: var(--mkc-muted); margin-top: 20px; }
+.mkc-videoshow__checklist li { display: flex; align-items: center; gap: 10px; font-size: .93rem; }
+.mkc-videoshow__checklist svg { width: 17px; color: var(--mkc-accent-2); flex: none; }
+.mkc-videoshow__media {
+  position: relative; aspect-ratio: 16/10; overflow: hidden; background: #0b0c0d;
+  border: 1px solid var(--mkc-line); border-radius: var(--mkc-radius); cursor: default;
+}
+.mkc-videoshow__media img { width: 100%; height: 100%; object-fit: cover; opacity: .82; }
+.mkc-videoshow__play {
+  position: absolute; inset: 0; display: grid; place-items: center;
+}
+.mkc-videoshow__play span {
+  width: 66px; height: 66px; border-radius: 50%; background: rgba(255,255,255,.92);
+  display: grid; place-items: center; color: #16171a;
+}
+.mkc-videoshow__play svg { width: 24px; height: 24px; margin-left: 3px; }
+.mkc-videoshow__label {
+  position: absolute; left: 20px; bottom: 16px; z-index: 2; color: #fff;
+  font-family: var(--mkc-display); letter-spacing: .06em; text-transform: uppercase; font-size: .85rem;
+  background: rgba(5,5,5,.55); padding: 5px 10px;
+}
+@media (max-width: 1024px) { .mkc-videoshow__layout { grid-template-columns: 1fr; } }
+
+/* =========================================================================
+   05. BENEFÍCIOS -- COMPACTADO (pedido da dona): lista densa em 2 colunas com
+   ícone + título + texto NA MESMA LINHA, em vez da grade 3x2 de cartões altos
+   (min-height 260px cada) do Cinematic original. Mesmos 6 itens, mesmo texto,
+   about a metade da altura.
+   ========================================================================= */
+.mkc-benefit__grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  border-top: 1px solid var(--mkc-line);
+}
+.mkc-benefit__card {
+  display: flex; gap: 16px; align-items: flex-start; padding: 18px 22px 18px 0;
+  border-bottom: 1px solid var(--mkc-line);
+}
+.mkc-benefit__grid > *:nth-child(odd) { border-right: 1px solid var(--mkc-line); padding-right: 22px; }
+.mkc-benefit__grid > *:nth-child(even) { padding-left: 22px; }
+.mkc-benefit__icon {
+  display: grid; place-items: center; width: 42px; height: 42px; flex: none; margin-top: 2px;
+  border: 1px solid var(--mkc-accent-2); color: var(--mkc-accent-2); border-radius: 50%;
+}
+.mkc-benefit__icon svg { width: 19px; height: 19px; }
+.mkc-benefit__card h3 { font-size: 1.02rem; margin-bottom: 3px; }
+.mkc-benefit__card p { color: var(--mkc-muted); line-height: 1.45; font-size: .87rem; }
+@media (max-width: 767px) {
+  .mkc-benefit__grid { grid-template-columns: 1fr; }
+  .mkc-benefit__grid > *:nth-child(odd) { border-right: 0; padding-right: 0; }
+  .mkc-benefit__grid > *:nth-child(even) { padding-left: 0; }
+  .mkc-benefit__card { padding: 14px 0; }
+}
+
+/* =========================================================================
+   06. ACESSO + MÓDULOS -- feature-story: 2 linhas foto+texto alternadas
+   ========================================================================= */
+.mkc-feature { padding-top: 0; }
+.mkc-feature__row {
+  display: grid; grid-template-columns: 1.05fr .95fr; align-items: center;
+  gap: clamp(28px, 5vw, 68px); margin-top: clamp(36px, 5vw, 68px);
+}
+.mkc-feature__row:first-child { margin-top: 0; }
+.mkc-feature__row--reverse { direction: rtl; }
+.mkc-feature__row--reverse > * { direction: ltr; }
+.mkc-feature__media { position: relative; aspect-ratio: 16/11; overflow: hidden; background: var(--mkc-surface); border-radius: var(--mkc-radius); }
+.mkc-feature__media img { width: 100%; height: 100%; object-fit: cover; }
+.mkc-feature__media span {
+  position: absolute; left: 16px; bottom: 14px; color: #fff; font-family: var(--mkc-display);
+  letter-spacing: .06em; text-transform: uppercase; font-size: .78rem; background: rgba(5,5,5,.6); padding: 5px 9px;
+}
+.mkc-feature__copy p { color: var(--mkc-muted); line-height: 1.6; margin-top: 4px; max-width: 480px; font-size: .96rem; }
+.mkc-feature__list { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; margin-top: 22px; color: var(--mkc-muted); }
+.mkc-feature__list li { display: flex; align-items: center; gap: 9px; font-size: .89rem; }
+.mkc-feature__list svg { width: 17px; color: var(--mkc-accent-2); flex: none; }
+.mkc-feature__cta { margin-top: 22px; }
+@media (max-width: 1024px) {
+  .mkc-feature__row, .mkc-feature__row--reverse { grid-template-columns: 1fr; direction: ltr; }
+  .mkc-feature__media { aspect-ratio: 16/9; }
+}
+@media (max-width: 767px) {
+  .mkc-feature__row { margin-top: 36px; gap: 22px; }
+  .mkc-feature__list { grid-template-columns: 1fr; }
+}
+
+/* =========================================================================
+   07. TÉCNICO -- foto + grade de ícones + barra "itens de série"
+   ========================================================================= */
+.mkc-technical__layout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.mkc-technical__photo { position: relative; min-height: 360px; overflow: hidden; background: var(--mkc-surface); border-radius: var(--mkc-radius); }
+.mkc-technical__photo img { width: 100%; height: 100%; object-fit: cover; }
+.mkc-technical__stamp {
+  position: absolute; left: 16px; bottom: 14px; display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.95); color: #16171a; font-size: .78rem; font-weight: 700;
+  padding: 7px 11px; border-radius: var(--mkc-radius);
+}
+.mkc-technical__stamp svg { width: 16px; color: var(--mkc-accent-2); }
+.mkc-technical__grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--mkc-line); border-left: 1px solid var(--mkc-line); }
+.mkc-technical__item { border-right: 1px solid var(--mkc-line); border-bottom: 1px solid var(--mkc-line); padding: 20px; display: flex; gap: 13px; align-items: flex-start; }
+.mkc-technical__item svg { width: 22px; height: 22px; color: var(--mkc-accent-2); flex: none; margin-top: 3px; }
+.mkc-technical__item h3 { font-size: 1rem; margin-bottom: 3px; }
+.mkc-technical__item p { color: var(--mkc-muted); font-size: .84rem; line-height: 1.45; }
+.mkc-technical__bar {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+  border: 1px solid var(--mkc-line); margin-top: 22px; padding: 14px 22px;
+}
+.mkc-technical__bar strong { font-family: var(--mkc-display); text-transform: uppercase; letter-spacing: .04em; font-size: .82rem; color: var(--mkc-text); }
+.mkc-technical__bar span { color: var(--mkc-muted); font-size: .82rem; }
+.mkc-technical__bar span::before { content: "\2713"; color: var(--mkc-accent-2); margin-right: 6px; }
+@media (max-width: 1024px) { .mkc-technical__layout { grid-template-columns: 1fr; } .mkc-technical__photo { min-height: 320px; } }
+@media (max-width: 767px) { .mkc-technical__grid { grid-template-columns: 1fr; } .mkc-technical__bar { flex-direction: column; align-items: flex-start; } }
+
+/* =========================================================================
+   08. CTA-BANNER -- faixa dourada
+   ========================================================================= */
+.mkc-ctaband { background: var(--mkc-accent); color: #10110f; padding: 44px 0; }
+.mkc-ctaband__inner { display: flex; align-items: center; justify-content: space-between; gap: 26px; flex-wrap: wrap; }
+.mkc-ctaband h2 { font-family: var(--mkc-display); text-transform: uppercase; letter-spacing: -.02em; font-size: clamp(1.9rem, 3vw, 2.7rem); font-weight: 800; line-height: .98; max-width: 620px; margin: 0; }
+.mkc-ctaband .mkc-eyebrow { color: #10110f; }
+@media (max-width: 767px) { .mkc-ctaband__inner { flex-direction: column; align-items: stretch; text-align: left; } }
+
+/* =========================================================================
+   09. VITRINE -- MÓDULO MESCLADO (pedido da dona): "Detalhes que você percebe
+   de perto." (Galeria) + "Comece com proteção. Evolua sem improviso."
+   (Acessórios) + "Feita para sair da garagem." (Uso real), num módulo só,
+   um pouco maior que os demais (autorizado pela dona). Cada um mantém seu
+   título original em .mkc-subhead; a Galeria e os Acessórios viram tiras de
+   rolagem horizontal (mkc-strip) no lugar do mosaico de 820px / grade alta de
+   4 cartões -- é a técnica "grade de 4 vira carrossel" sugerida no próprio
+   retorno da dona, e a que mais economiza altura de scroll nesta LP.
+   ========================================================================= */
+.mkc-vitrine__bloco { margin-top: 34px; }
+.mkc-vitrine__bloco:first-child { margin-top: 0; }
+.mkc-vitrine__divider { border: 0; border-top: 1px solid var(--mkc-line); margin: 34px 0 0; }
+
+/* tira de rolagem horizontal (galeria de detalhes) */
+.mkc-strip { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
+.mkc-strip::-webkit-scrollbar { height: 6px; }
+.mkc-strip::-webkit-scrollbar-thumb { background: var(--mkc-line); border-radius: 4px; }
+.mkc-strip__item { position: relative; flex: 0 0 auto; width: 240px; height: 220px; overflow: hidden; border-radius: var(--mkc-radius); scroll-snap-align: start; background: var(--mkc-surface); }
+.mkc-strip__item img { width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 767px) { .mkc-strip__item { width: 200px; height: 190px; } }
+
+/* carrossel de acessórios (4 cartões, rolagem horizontal em vez de grade alta) */
+.mkc-carousel { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
+.mkc-carousel::-webkit-scrollbar { height: 6px; }
+.mkc-carousel::-webkit-scrollbar-thumb { background: var(--mkc-line); border-radius: 4px; }
+.mkc-carousel__card { flex: 0 0 auto; width: 250px; border: 1px solid var(--mkc-line); border-radius: var(--mkc-radius); overflow: hidden; scroll-snap-align: start; background: #fff; }
+.mkc-carousel__img { height: 150px; overflow: hidden; }
+.mkc-carousel__img img { width: 100%; height: 100%; object-fit: cover; }
+.mkc-carousel__body { padding: 14px 16px 18px; }
+.mkc-carousel__tag { color: var(--mkc-accent-2); font-family: var(--mkc-display); letter-spacing: .06em; text-transform: uppercase; font-size: .7rem; font-weight: 700; }
+.mkc-carousel__body h3 { font-size: 1rem; margin: 4px 0 4px; }
+.mkc-carousel__body p { color: var(--mkc-muted); font-size: .83rem; line-height: 1.4; }
+@media (max-width: 767px) { .mkc-carousel__card { width: 220px; } .mkc-carousel__img { height: 130px; } }
+
+/* uso real: linha de 3 fotos mais baixas que o Cinematic original (320px -> 190px) */
+.mkc-social__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.mkc-social__card { position: relative; min-height: 190px; overflow: hidden; background: var(--mkc-surface); border-radius: var(--mkc-radius); }
+.mkc-social__card img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+.mkc-social__caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 12px 14px; background: linear-gradient(0deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,0) 65%); }
+.mkc-social__caption strong { display: block; color: #fff; font-family: var(--mkc-display); text-transform: uppercase; letter-spacing: .03em; font-size: .86rem; }
+.mkc-social__caption span { color: rgba(255,255,255,.85); font-size: .74rem; }
+.mkc-social__note { color: var(--mkc-muted); margin: 14px 0 0; font-size: .78rem; }
+@media (max-width: 767px) { .mkc-social__grid { grid-template-columns: 1fr 1fr; } .mkc-social__grid > *:last-child { grid-column: 1 / -1; } }
+
+/* =========================================================================
+   10. COMPATIBILIDADE -- foto/gif + lista vertical de veículos
+   ========================================================================= */
+.mkc-compat__layout { display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: clamp(30px, 5vw, 64px); }
+.mkc-compat__media { position: relative; border-radius: var(--mkc-radius); overflow: hidden; background: var(--mkc-surface); }
+.mkc-compat__media img { width: 100%; height: auto; display: block; }
+.mkc-compat__media span {
+  position: absolute; left: 14px; bottom: 12px; background: rgba(255,255,255,.94); color: #16171a;
+  font-size: .74rem; font-weight: 700; padding: 6px 10px; border-radius: var(--mkc-radius);
+}
+.mkc-vehicle-list { display: grid; gap: 10px; margin-top: 22px; }
+.mkc-vehicle-list > div { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--mkc-line); }
+.mkc-vehicle-list svg { width: 22px; color: var(--mkc-accent-2); flex: none; }
+.mkc-vehicle-list strong { display: block; font-size: .95rem; color: var(--mkc-text); }
+.mkc-vehicle-list small { color: var(--mkc-muted); font-size: .8rem; }
+.mkc-compat__note { color: var(--mkc-muted); margin-top: 16px; font-size: .85rem; }
+@media (max-width: 1024px) { .mkc-compat__layout { grid-template-columns: 1fr; } }
+
+/* =========================================================================
+   11. INSTALAÇÃO -- COMPACTADO (pedido da dona): passos mais justos e cartão
+   de garantia mais baixo (era min-height:320px no Cinematic original).
+   ========================================================================= */
+.mkc-install__layout { display: grid; grid-template-columns: 1.15fr .85fr; align-items: stretch; gap: 20px; }
+.mkc-install__steps { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--mkc-line); }
+.mkc-install__step { border-right: 1px solid var(--mkc-line); padding: 16px 18px; }
+.mkc-install__step:last-child { border-right: 0; }
+.mkc-install__step span { display: block; color: var(--mkc-accent-2); font-family: var(--mkc-display); font-size: 1.3rem; font-weight: 800; }
+.mkc-install__step strong { display: block; margin-top: 8px; font-size: .88rem; }
+.mkc-install__step p { color: var(--mkc-muted); margin-top: 3px; font-size: .8rem; line-height: 1.4; }
+.mkc-warranty {
+  background: var(--mkc-accent); color: #10110f; display: flex; flex-direction: column;
+  justify-content: center; min-height: 210px; padding: clamp(24px, 3.5vw, 40px); border-radius: var(--mkc-radius);
+}
+.mkc-warranty svg { width: 26px; height: 26px; }
+.mkc-warranty span { display: block; margin: 10px 0 4px; font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; font-family: var(--mkc-display); }
+.mkc-warranty h3 { font-size: 1.2rem; margin: 0 0 4px; }
+.mkc-warranty p { margin-top: 4px; font-size: .85rem; line-height: 1.4; }
+.mkc-warranty .mkc-warranty__team { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: .8rem; font-weight: 600; }
+.mkc-warranty .mkc-warranty__team svg { width: 18px; height: 18px; }
+@media (max-width: 1024px) { .mkc-install__layout { grid-template-columns: 1fr; } }
+@media (max-width: 767px) { .mkc-install__steps { grid-template-columns: 1fr; } .mkc-install__step { border-right: 0; border-bottom: 1px solid var(--mkc-line); } }
+
+/* =========================================================================
+   12. FAQ -- <details>/<summary> nativos, exclusividade por atributo "name"
+   ========================================================================= */
+.mkc-faq__layout { display: grid; grid-template-columns: .8fr 1.2fr; align-items: start; gap: clamp(36px, 6vw, 80px); }
+.mkc-faq__list { display: flex; flex-direction: column; }
+.mkc-faq__item { border-bottom: 1px solid var(--mkc-line); }
+.mkc-faq__item summary {
+  cursor: pointer; min-height: 62px; display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; font-family: var(--mkc-display); font-size: 1.02rem; font-weight: 600; list-style: none;
+  color: var(--mkc-text); text-transform: none;
+}
+.mkc-faq__item summary::-webkit-details-marker { display: none; }
+.mkc-faq__item summary svg { width: 19px; color: var(--mkc-accent-2); flex: none; transition: transform .2s; }
+.mkc-faq__item[open] summary svg { transform: rotate(180deg); }
+.mkc-faq__item p { max-width: 720px; color: var(--mkc-muted); margin: -4px 40px 18px 0; line-height: 1.6; font-size: .89rem; }
+@media (max-width: 1024px) { .mkc-faq__layout { grid-template-columns: 1fr; } .mkc-faq__layout .mkc-heading { margin-bottom: 8px; } }
+@media (max-width: 767px) { .mkc-faq__item summary { font-size: .96rem; min-height: 54px; } }
+
+/* =========================================================================
+   13/RD-FORM/14. FORMULÁRIO -- introdução clara + formulário nativo do RD,
+   com CARTÃO CLARO (era escuro #121416 no Cinematic original) sobre fundo
+   BRANCO de verdade (não mais --mkc-surface -- a dona pediu o site inteiro em
+   branco fora do Hero; --mkc-surface some de faixas inteiras, ver nota acima
+   em .mkc-section-bg--surface).
+   ========================================================================= */
+.mkc-lead-topo { background: var(--mkc-bg); padding: clamp(36px, 4.2vw, 66px) 0 24px; }
+.mkc-lead-topo .mkc-heading { max-width: 620px; }
+.mkc-lead__points { display: grid; gap: 11px; margin-top: 26px; }
+.mkc-lead__points li { display: flex; align-items: center; gap: 11px; color: var(--mkc-text); font-size: .9rem; }
+.mkc-lead__points svg { width: 19px; color: var(--mkc-accent-2); flex: none; }
+
+/* Formulário nativo do RD -- mesma estrutura Bricks das LPs anteriores. Cartão
+   CLARO (branco, borda cinza) -- diferença desta LP frente à referência
+   Cinematic (que era escura em todas as versões usadas até aqui). */
+.rd-form, [id^="rd-form-"] {
+  width: 100vw !important; max-width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important; margin-right: calc(50% - 50vw) !important;
+  padding: 0 20px !important; box-sizing: border-box !important; background: var(--mkc-bg) !important;
+}
+#conversion-form {
+  width: 100% !important; background: #ffffff !important; max-width: 1140px !important;
+  margin: 0 auto !important; padding: clamp(26px, 4vw, 48px) !important; border-radius: 2px !important;
+  border: 1px solid var(--mkc-line) !important; box-shadow: 0 18px 50px rgba(20,20,20,.06) !important;
+  font-family: "Inter", sans-serif !important; box-sizing: border-box !important;
+}
+#conversion-form .bricks-form__fieldset {
+  display: flex !important; flex-direction: row !important; align-items: flex-start !important;
+  flex-wrap: wrap !important; gap: 0 20px !important;
+}
+#conversion-form .bricks-form__field {
+  min-width: 0 !important; flex: 0 0 calc(50% - 10px) !important; max-width: calc(50% - 10px) !important;
+  margin-bottom: 18px !important;
+}
+#conversion-form .bricks-form__field.mkc-form-full,
+#conversion-form .bricks-form__field:has(.rd-bricks-captcha) {
+  flex-basis: 100% !important; max-width: 100% !important;
+}
+#conversion-form .bricks-form__input::placeholder { color: #8c8f93 !important; opacity: 1 !important; }
+#conversion-form .bricks-form__label {
+  font-family: "Inter", sans-serif !important; font-weight: 500 !important; color: var(--mkc-text) !important;
+  font-size: .84rem !important; letter-spacing: .02em; text-transform: uppercase;
+  line-height: 1.4 !important; margin-bottom: 8px !important; display: block !important;
+}
+#conversion-form .bricks-form__input,
+#conversion-form input.bricks-form__input,
+#conversion-form select.bricks-form__input,
+#conversion-form textarea.bricks-form__input {
+  width: 100% !important; height: auto !important; border: 1px solid rgba(20,20,20,.2) !important;
+  border-radius: 2px !important; padding: 14px 16px !important; font-family: "Inter", sans-serif !important;
+  font-size: .95rem !important; color: var(--mkc-text) !important; background: #fff !important;
+  box-sizing: border-box !important;
+}
+#conversion-form .bricks-form__input:focus { outline: none !important; border-color: var(--mkc-accent-2) !important; }
+#conversion-form .phone-input-group { display: flex !important; align-items: stretch !important; gap: 8px !important; }
+#conversion-form .phone-input-group .bricks-form__input { flex: 1 1 auto !important; width: auto !important; }
+#conversion-form .phone-input-group .select2-container.phone-country { flex: 0 0 64px !important; width: 64px !important; }
+#conversion-form .phone-input-group .select2-container.phone-country .select2-choice {
+  height: 100% !important; min-height: 48px !important; display: flex !important; align-items: center !important;
+  justify-content: center !important; border: 1px solid rgba(20,20,20,.2) !important; border-radius: 2px !important;
+  background: #fff !important; padding: 0 !important;
+}
+#conversion-form .phone-input-group .select2-chosen { line-height: 1 !important; }
+#conversion-form .phone-input-group img.flag { width: 22px !important; height: auto !important; display: block !important; }
+#conversion-form .phone-input-group .select2-search-choice-close { display: none !important; }
+#conversion-form .phone-input-group > .form-control.phone-country:not(.select2-container) { display: none !important; }
+#conversion-form .bricks-form__submit { margin-top: 6px !important; }
+#conversion-form .bricks-form__submit .rd-button,
+#conversion-form button.rd-button,
+#conversion-form a.rd-button {
+  display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: center !important;
+  background-color: var(--mkc-accent) !important; border: 1px solid var(--mkc-accent) !important; color: #10110f !important;
+  width: 100% !important; max-width: 100% !important; height: auto !important; min-height: 62px !important;
+  font-family: "Barlow Condensed", sans-serif !important; letter-spacing: .06em !important;
+  font-size: 1.12rem !important; font-weight: 800 !important; line-height: normal !important; text-transform: uppercase !important;
+  text-align: center !important; border-radius: 2px !important; cursor: pointer !important; margin: 0 !important;
+  padding: 10px 20px !important; transition: transform .2s;
+}
+#conversion-form .bricks-form__submit .rd-button:hover { transform: scale(1.02); }
+@media (max-width: 767px) {
+  #conversion-form { padding: 22px 18px !important; }
+  #conversion-form .bricks-form__field { flex: 0 0 100% !important; max-width: 100% !important; }
+}
+
+/* =========================================================================
+   15. INSTITUCIONAL -- marca + texto + fatos curtos
+   ========================================================================= */
+.mkc-about__layout { display: grid; grid-template-columns: 96px 1fr; gap: 32px; align-items: center; }
+.mkc-about__mark img { width: 100%; }
+.mkc-about__facts { grid-column: 2; display: grid; grid-template-columns: repeat(3, auto); gap: 14px; margin-top: 16px; }
+.mkc-about__facts span { display: flex; align-items: baseline; gap: 9px; border-bottom: 1px solid var(--mkc-line); padding-bottom: 10px; color: var(--mkc-muted); font-size: .8rem; }
+.mkc-about__facts strong { font-family: var(--mkc-display); font-size: 1.45rem; color: var(--mkc-text); }
+@media (max-width: 767px) {
+  .mkc-about__layout { grid-template-columns: 64px 1fr; gap: 20px; }
+  .mkc-about__facts { grid-column: 1 / -1; grid-template-columns: repeat(3, 1fr); }
+}
+
+/* =========================================================================
+   16. RODAPÉ
+   ========================================================================= */
+.mkc-footer { background: #fff; border-top: 1px solid var(--mkc-line); padding: 28px 0 48px; }
+.mkc-footer__inner { display: flex; align-items: center; justify-content: space-between; gap: 22px; flex-wrap: wrap; }
+.mkc-footer__brand { display: flex; align-items: center; gap: 10px; }
+.mkc-footer__logo { width: 26px; }
+.mkc-footer__brandtext { font-family: var(--mkc-display); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; font-size: .95rem; color: var(--mkc-text); }
+.mkc-footer__text { display: flex; flex-direction: column; gap: 2px; }
+.mkc-footer__p { color: var(--mkc-muted); font-size: .76rem; }
+@media (max-width: 767px) { .mkc-footer__inner { flex-direction: column; align-items: flex-start; } }
+
+</style>
+</head>
+<body>
+<!-- Consumidor: quem for montar/manter a LP "Canopy Armor" no RD. Seção 1 -- Header:
+     réplica fiel do menu real de hoje (5 âncoras + CTA), continua PRETO/transparente,
+     flutuando sobre o Hero (position:absolute -- não é sticky, igual à página de hoje).
+     A <div class="mkc-noise"> é a textura de ruído REAL de hoje (confirmada no DOM do
+     build, classe .noise) -- entra 1x aqui, position:fixed cobre a página inteira. -->
+<div class="mkc-noise" aria-hidden="true"></div>
+<!-- SEM mkc-full aqui de propósito: o header é position:absolute + left:0/right:0,
+     que já ocupa a viewport inteira sozinho -- ver nota em barracas-referencia-canopy-
+     cinematic.md §4 sobre a armadilha de somar mkc-full a um elemento absoluto. -->
+<section class="mkc-section mkc-header">
+  <div class="mkc-header__inner">
+    <a href="#topo" class="mkc-header__brand">
+      <img class="mkc-header__logo" src="img/logos/logo-mkk.svg" alt="MKK Off Road" />
+      <span class="mkc-header__brandtext">Off Road</span>
+    </a>
+    <nav class="mkc-header__nav">
+      <a class="mkc-header__link" href="#diferenciais">Diferenciais</a>
+      <a class="mkc-header__link" href="#acessorios">Acessórios</a>
+      <a class="mkc-header__link" href="#compatibilidade">Compatibilidade</a>
+      <a class="mkc-header__link" href="#faq">FAQ</a>
+      <a class="mkc-header__link mkc-header__cta" href="#formulario">Falar com especialista</a>
+    </nav>
+  </div>
+</section>
+
+<!-- Consumidor: quem for montar/manter a LP "Canopy Armor" no RD. Seção 2 -- Hero:
+     ÚNICA faixa que continua preta (pedido da dona, 29/09). Texto e foto REAIS de
+     hoje: eyebrow, H1, subtítulo, CTA, "Projeto nacional" e a faixa de 3 fatos
+     rápidos (rail) -- tudo literal do DOM de produção, nada em Lorem Ipsum. -->
+<section class="mkc-section mkc-hero mkc-full" id="topo">
+  <div class="mkc-hero__bg"></div>
+  <div class="mkc-hero__content">
+    <div class="mkc-hero__copy">
+      <span class="mkc-eyebrow">Proteção &middot; organização &middot; performance</span>
+      <h1 class="mkc-hero__title"><span>Canopy Armor —</span>Sua picape pronta para ir além.</h1>
+      <p class="mkc-hero__sub">Capota rígida em alumínio para transformar sua picape em um espaço fechado, seguro e organizado, pronto para o trabalho e para expedições.</p>
+      <div class="mkc-hero__actions">
+        <a class="mkc-btn mkc-btn--primary" href="#formulario">Quero equipar minha picape
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <span class="mkc-hero__proof">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 12-9.373 9.373a1 1 0 0 1-3.001-3L12 9"/><path d="m18 15 4-4"/><path d="m21.5 11.5-1.914-1.914A2 2 0 0 1 19 8.172v-.344a2 2 0 0 0-.586-1.414l-1.657-1.657A6 6 0 0 0 12.516 3H9l1.243 1.243A6 6 0 0 1 12 8.485V10l2 2h1.172a2 2 0 0 1 1.414.586L18.5 14.5"/></svg>
+          Projeto nacional
+        </span>
+      </div>
+    </div>
+    <div class="mkc-hero__rail">
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+        Alumínio 2 mm
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.6 2.7a10 10 0 1 0 5.7 5.7"/><circle cx="12" cy="12" r="2"/><path d="M13.4 10.6 19 5"/></svg>
+        Sistema Dust Out
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></svg>
+        Organização modular
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- Seção 3 -- "Diferenciais" (id=diferenciais). Fundo branco a partir daqui (pedido da
+     dona). Conteúdo real de hoje: 3 cartões numerados, mesmos ícones (lock-keyhole,
+     package-check, compass) do DOM de produção. -->
+<section class="mkc-section mkc-section-bg mkc-pain mkc-full" id="diferenciais">
+  <div class="mkc-inner">
+    <div class="mkc-heading">
+      <p class="mkc-eyebrow">Para quem é a Canopy Armor</p>
+      <h2>Chega de adaptar a viagem à caçamba.</h2>
+      <p>A Canopy Armor resolve as três dores que mais limitam quem depende da picape todos os dias.</p>
+    </div>
+    <div class="mkc-pain__grid">
+      <article class="mkc-pain__card">
+        <span class="mkc-pain__number">01</span>
+        <svg class="mkc-pain__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="16" r="1"/><rect x="3" y="10" width="18" height="12" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></svg>
+        <h3>Carga exposta e insegura?</h3>
+        <p>Feche a caçamba com uma estrutura rígida, seis travas e acesso controlado.</p>
+        <strong>Proteção para seguir tranquilo.</strong>
+      </article>
+      <article class="mkc-pain__card">
+        <span class="mkc-pain__number">02</span>
+        <svg class="mkc-pain__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12"/><path d="m16 17 2 2 4-4"/><path d="M21 11.127V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.729l7 4a2 2 0 0 0 2 .001l1.32-.753"/><path d="M3.29 7 12 12l8.71-5"/><path d="m7.5 4.27 8.997 5.148"/></svg>
+        <h3>Tudo empilhado e difícil de alcançar?</h3>
+        <p>Abra pelas laterais ou pela traseira e encontre o que precisa sem descarregar tudo.</p>
+        <strong>Acesso rápido no uso real.</strong>
+      </article>
+      <article class="mkc-pain__card">
+        <span class="mkc-pain__number">03</span>
+        <svg class="mkc-pain__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/></svg>
+        <h3>A picape limita seus planos?</h3>
+        <p>Adicione módulos, barraca, toldo e equipamentos conforme sua próxima aventura.</p>
+        <strong>Uma base pronta para evoluir.</strong>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Seção 4 -- "Review completo". IGUAL a hoje: é um PLACEHOLDER (foto + botão de play
+     visual) aguardando o link do YouTube -- não há vídeo de verdade tocando ainda,
+     nem no site real. Não simulamos autoplay: mantém exatamente o mesmo estado de
+     hoje ("Link do review a inserir"), inerte (sem onclick). -->
+<section class="mkc-section mkc-section-bg mkc-full" id="review">
+  <div class="mkc-inner mkc-videoshow__layout">
+    <div>
+      <p class="mkc-eyebrow">Review completo</p>
+      <h2 style="font-family:var(--mkc-display);text-transform:uppercase;letter-spacing:-.03em;margin:10px 0 12px;font-size:clamp(1.9rem,3.2vw,2.9rem);font-weight:800;line-height:.96;">Veja cada detalhe em funcionamento.</h2>
+      <p style="color:var(--mkc-muted);line-height:1.6;max-width:420px;font-size:.96rem;">Aberturas, vedação, módulos e instalação explicados em um único vídeo.</p>
+      <ul class="mkc-videoshow__checklist">
+        <li><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Tour externo e interno</li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Demonstração dos acessórios</li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Processo de instalação</li>
+      </ul>
+    </div>
+    <div class="mkc-videoshow__media" aria-label="Vídeo de review aguardando link do YouTube">
+      <img src="img/setup-complete.webp" alt="Canopy Armor com estrutura de camping montada" loading="lazy" />
+      <div class="mkc-videoshow__play"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg></span></div>
+      <span class="mkc-videoshow__label">Link do review a inserir</span>
+    </div>
+  </div>
+</section>
+
+<!-- Seção 5 -- "Benefícios exclusivos" / "Engenharia que trabalha com você."
+     COMPACTADA (pedido literal da dona). Hoje: grade 3x2 de cartões com min-height
+     260px cada (~800px de altura total). Aqui: lista densa em 2 colunas, ícone+título+
+     texto na mesma linha -- MESMOS 6 itens, MESMO texto, nada cortado, só reorganizado
+     pra ocupar menos espaço vertical (ver canopy-rd-revisao-dona.md, tabela seção a
+     seção, pra altura antes x depois). -->
+<section class="mkc-section mkc-section-bg mkc-section-bg--surface mkc-full" id="beneficios">
+  <div class="mkc-inner">
+    <div class="mkc-heading mkc-heading--center">
+      <p class="mkc-eyebrow">Benefícios exclusivos</p>
+      <h2>Engenharia que trabalha com você.</h2>
+      <p>Cada detalhe existe para tornar a picape mais segura, acessível e preparada.</p>
+    </div>
+    <div class="mkc-benefit__grid">
+      <article class="mkc-benefit__card">
+        <span class="mkc-benefit__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        <div><h3>Proteção de verdade</h3><p>Estrutura em alumínio, pintura eletrostática e seis fechaduras com travas individuais.</p></div>
+      </article>
+      <article class="mkc-benefit__card">
+        <span class="mkc-benefit__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"/><path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"/></svg></span>
+        <div><h3>Carga mais limpa</h3><p>O sistema Dust Out ajuda a mitigar a entrada de poeira durante seus deslocamentos.</p></div>
+      </article>
+      <article class="mkc-benefit__card">
+        <span class="mkc-benefit__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12"/><path d="m16 17 2 2 4-4"/><path d="M21 11.127V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.729l7 4a2 2 0 0 0 2 .001l1.32-.753"/><path d="M3.29 7 12 12l8.71-5"/><path d="m7.5 4.27 8.997 5.148"/></svg></span>
+        <div><h3>Acesso por todos os lados</h3><p>Portas laterais e traseira com abertura ampla para alcançar tudo sem desmontar a caçamba.</p></div>
+      </article>
+      <article class="mkc-benefit__card">
+        <span class="mkc-benefit__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></svg></span>
+        <div><h3>Organização modular</h3><p>Armários, mesa deslizante e painel MOLLE adaptam a Canopy ao seu tipo de uso.</p></div>
+      </article>
+      <article class="mkc-benefit__card">
+        <span class="mkc-benefit__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></span>
+        <div><h3>Visibilidade integrada</h3><p>Luz interna e conjunto no aerofólio para ré, freio e setas.</p></div>
+      </article>
+      <article class="mkc-benefit__card">
+        <span class="mkc-benefit__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/></svg></span>
+        <div><h3>Projeto nacional</h3><p>Desenvolvida pela MKK para as picapes e para as condições encontradas no Brasil.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Seção 6 -- feature-story: 2 linhas foto+texto empilhadas (padrão real de hoje),
+     linha 1 "Acesso total / Portas laterais e traseira", linha 2 invertida "Organização
+     inteligente / Módulos configuráveis". Conteúdo literal de hoje. -->
+<section class="mkc-section mkc-section-bg mkc-feature mkc-full" id="acesso">
+  <div class="mkc-inner mkc-feature__row">
+    <div class="mkc-feature__media">
+      <img src="img/access-side.webp" alt="Pessoa acessando a Canopy Armor pela lateral" loading="lazy" />
+      <span>Acesso total</span>
+    </div>
+    <div class="mkc-feature__copy">
+      <p class="mkc-eyebrow">Portas laterais e traseira</p>
+      <h2 style="font-family:var(--mkc-display);text-transform:uppercase;letter-spacing:-.03em;margin:10px 0 12px;font-size:clamp(1.9rem,3.2vw,2.9rem);font-weight:800;line-height:.96;">Tudo protegido. Tudo ao seu alcance.</h2>
+      <p>As aberturas amplas levam mais praticidade para o uso diário sem abrir mão de uma estrutura firme, vedada e pronta para receber novos módulos.</p>
+      <ul class="mkc-feature__list">
+        <li><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Abertura suave</li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Vedação emborrachada</li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Pintura eletrostática</li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Luz interna integrada</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mkc-inner mkc-feature__row mkc-feature__row--reverse" id="modulos">
+    <div class="mkc-feature__media">
+      <img src="img/cabinet-action.webp" alt="Compartimento modular da Canopy Armor sendo organizado" loading="lazy" />
+      <span>Organização inteligente</span>
+    </div>
+    <div class="mkc-feature__copy">
+      <p class="mkc-eyebrow">Módulos configuráveis</p>
+      <h2 style="font-family:var(--mkc-display);text-transform:uppercase;letter-spacing:-.03em;margin:10px 0 12px;font-size:clamp(1.9rem,3.2vw,2.9rem);font-weight:800;line-height:.96;">Seu equipamento tem lugar certo.</h2>
+      <p>Crie compartimentos independentes, adicione uma mesa de trabalho e leve os itens essenciais de forma segura e previsível.</p>
+      <div class="mkc-feature__cta">
+        <a class="mkc-btn mkc-btn--ghost" href="#acessorios">Conhecer os módulos
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Seção 7 -- "Recursos técnicos" / "O essencial já nasce integrado." Foto real +
+     grade de 6 ícones técnicos + barra "Itens da configuração base", conteúdo literal
+     de hoje (6 fechaduras, Dust Out, vidro Frits, etc.). -->
+<section class="mkc-section mkc-section-bg mkc-section-bg--surface mkc-full" id="tecnico">
+  <div class="mkc-inner">
+    <div class="mkc-heading">
+      <p class="mkc-eyebrow">Recursos técnicos</p>
+      <h2>O essencial já nasce integrado.</h2>
+      <p>Uma base robusta para usar agora e evoluir quando seus planos crescerem.</p>
+    </div>
+    <div class="mkc-technical__layout">
+      <div class="mkc-technical__photo">
+        <img src="img/product-side.webp" alt="Canopy Armor instalada em uma Ford Ranger" loading="lazy" />
+        <div class="mkc-technical__stamp">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>
+          Projeto MKK
+        </div>
+      </div>
+      <div class="mkc-technical__grid">
+        <article class="mkc-technical__item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+          <div><h3>Alumínio 2 mm</h3><p>Estrutura leve e resistente.</p></div>
+        </article>
+        <article class="mkc-technical__item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="16" r="1"/><rect x="3" y="10" width="18" height="12" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></svg>
+          <div><h3>6 fechaduras</h3><p>Travas individuais nas aberturas.</p></div>
+        </article>
+        <article class="mkc-technical__item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>
+          <div><h3>Vidro temperado</h3><p>Vidro Frits com 5 mm de espessura.</p></div>
+        </article>
+        <article class="mkc-technical__item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.6 2.7a10 10 0 1 0 5.7 5.7"/><circle cx="12" cy="12" r="2"/><path d="M13.4 10.6 19 5"/></svg>
+          <div><h3>Dust Out</h3><p>Pressurização para mitigar poeira.</p></div>
+        </article>
+        <article class="mkc-technical__item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          <div><h3>Iluminação</h3><p>LED interno e luzes no aerofólio.</p></div>
+        </article>
+        <article class="mkc-technical__item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></svg>
+          <div><h3>Fixação dedicada</h3><p>Encaixe projetado para cada picape.</p></div>
+        </article>
+      </div>
+    </div>
+    <div class="mkc-technical__bar">
+      <strong>Itens da configuração base</strong>
+      <span>Estrutura</span>
+      <span>Portas</span>
+      <span>Fechaduras</span>
+      <span>Iluminação</span>
+      <span>Vedação</span>
+    </div>
+  </div>
+</section>
+
+<!-- Seção 8 -- faixa de CTA dourada, texto literal de hoje. -->
+<section class="mkc-section mkc-ctaband mkc-full" id="cta">
+  <div class="mkc-inner mkc-ctaband__inner">
+    <div>
+      <p class="mkc-eyebrow">Configure do seu jeito</p>
+      <h2>Qual é a Canopy ideal para a sua rotina?</h2>
+    </div>
+    <a class="mkc-btn mkc-btn--dark" href="#formulario">
+      Quero saber mais
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- Seção 9 -- "VITRINE" -- MÓDULO MESCLADO (pedido literal da dona: "mesclar
+     informações, que pode ser um pouco maior que os demais"). Junta 3 seções de hoje
+     num módulo só, cada uma com o TÍTULO ORIGINAL preservado e visível:
+       1) Galeria           -- "Detalhes que você percebe de perto."
+       2) Acessórios        -- "Comece com proteção. Evolua sem improviso." (id=acessorios,
+                                mantido: é o alvo do link "Acessórios" do Header e do CTA
+                                "Conhecer os módulos" da seção anterior)
+       3) Uso real          -- "Feita para sair da garagem."
+     Nada foi cortado: as 6 fotos da galeria que são VISÍVEIS hoje (confirmado por
+     computed style -- o mosaico original reserva 8 posições mas exibe só 6, as 2
+     últimas ficam com display:none mesmo na página real), os 4 acessórios e as 3 fotos
+     de uso real continuam todos aqui -- só viraram tiras de rolagem horizontal em vez
+     de mosaico/grade alta, técnica sugerida pela própria dona ("trocar grade de 4 por
+     carrossel"). É o maior corte de altura desta LP: ver canopy-rd-revisao-dona.md. -->
+<section class="mkc-section mkc-section-bg mkc-full" id="vitrine">
+  <div class="mkc-inner">
+
+    <div class="mkc-vitrine__bloco">
+      <div class="mkc-subhead">
+        <p class="mkc-eyebrow">Galeria</p>
+        <h3>Detalhes que você percebe de perto.</h3>
+        <p>Explore o acabamento, o acesso e as possibilidades de configuração da Canopy Armor.</p>
+      </div>
+      <div class="mkc-strip">
+        <div class="mkc-strip__item"><img src="img/open-canopy.webp" alt="Canopy Armor aberta por todos os lados" loading="lazy" /></div>
+        <div class="mkc-strip__item"><img src="img/access-side.webp" alt="Acesso lateral da Canopy Armor" loading="lazy" /></div>
+        <div class="mkc-strip__item"><img src="img/interior-open-1.webp" alt="Vista interna da Canopy Armor" loading="lazy" /></div>
+        <div class="mkc-strip__item"><img src="img/taillight.webp" alt="Detalhe das luzes integradas" loading="lazy" /></div>
+        <div class="mkc-strip__item"><img src="img/cabinet-action.webp" alt="Organização interna em uso" loading="lazy" /></div>
+        <div class="mkc-strip__item"><img src="img/setup-complete.webp" alt="Picape equipada para acampamento" loading="lazy" /></div>
+      </div>
+    </div>
+
+    <hr class="mkc-vitrine__divider" />
+
+    <div class="mkc-vitrine__bloco" id="acessorios">
+      <div class="mkc-subhead">
+        <p class="mkc-eyebrow">Opcionais e acessórios</p>
+        <h3>Comece com proteção. Evolua sem improviso.</h3>
+        <p>Escolha os upgrades que fazem sentido para o seu trabalho, viagem ou expedição.</p>
+      </div>
+      <div class="mkc-carousel">
+        <article class="mkc-carousel__card">
+          <div class="mkc-carousel__img"><img src="img/sliding-table.webp" alt="Mesa deslizante" loading="lazy" /></div>
+          <div class="mkc-carousel__body"><span class="mkc-carousel__tag">Multifuncional</span><h3>Mesa deslizante</h3><p>Uma bancada de trabalho com acesso aos equipamentos e melhor aproveitamento do espaço.</p></div>
+        </article>
+        <article class="mkc-carousel__card">
+          <div class="mkc-carousel__img"><img src="img/cabinet-organized.webp" alt="Armário modular" loading="lazy" /></div>
+          <div class="mkc-carousel__body"><span class="mkc-carousel__tag">Organização</span><h3>Armário modular</h3><p>Compartimentos independentes para ferramentas, equipamentos e itens de expedição.</p></div>
+        </article>
+        <article class="mkc-carousel__card">
+          <div class="mkc-carousel__img"><img src="img/molle-product.webp" alt="Painel MOLLE externo" loading="lazy" /></div>
+          <div class="mkc-carousel__body"><span class="mkc-carousel__tag">Expansão</span><h3>Painel MOLLE externo</h3><p>Expanda a configuração e fixe pranchas, ferramentas e acessórios do seu jeito.</p></div>
+        </article>
+        <article class="mkc-carousel__card">
+          <div class="mkc-carousel__img"><img src="img/roof-rail.webp" alt="Trilhos superiores" loading="lazy" /></div>
+          <div class="mkc-carousel__body"><span class="mkc-carousel__tag">Carga superior</span><h3>Trilhos superiores</h3><p>Base para transformar o teto em mais uma área útil da sua expedição.</p></div>
+        </article>
+      </div>
+    </div>
+
+    <hr class="mkc-vitrine__divider" />
+
+    <div class="mkc-vitrine__bloco">
+      <div class="mkc-subhead">
+        <p class="mkc-eyebrow">Uso real</p>
+        <h3>Feita para sair da garagem.</h3>
+        <p>Trabalho, fim de semana ou expedição completa: a Canopy se adapta ao que vem depois.</p>
+      </div>
+      <div class="mkc-social__grid">
+        <article class="mkc-social__card">
+          <img src="img/setup-annex.webp" alt="Setup com anexo lateral" loading="lazy" />
+          <div class="mkc-social__caption"><strong>Base de acampamento</strong><span>Toldo, abrigo e acesso organizado.</span></div>
+        </article>
+        <article class="mkc-social__card">
+          <img src="img/setup-awning.webp" alt="Setup com toldo aberto" loading="lazy" />
+          <div class="mkc-social__caption"><strong>Expedição completa</strong><span>Uma estrutura pronta para receber novos planos.</span></div>
+        </article>
+        <article class="mkc-social__card">
+          <img src="img/tool-strap.webp" alt="Ferramentas organizadas no painel MOLLE" loading="lazy" />
+          <div class="mkc-social__caption"><strong>Trabalho em campo</strong><span>Equipamentos visíveis e sempre à mão.</span></div>
+        </article>
+      </div>
+      <p class="mkc-social__note">Fotos, vídeos e depoimentos de clientes serão adicionados após aprovação do material.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Seção 10 -- "Compatibilidade". Conteúdo literal de hoje: gif + 5 veículos com
+     faixas de ano exatas. -->
+<section class="mkc-section mkc-section-bg mkc-section-bg--surface mkc-full" id="compatibilidade">
+  <div class="mkc-inner mkc-compat__layout">
+    <div class="mkc-compat__media">
+      <img src="img/compatibility.gif" alt="Modelos de picape compatíveis com a Canopy Armor alternando na tela" loading="lazy" />
+      <span>Visualização automática dos modelos</span>
+    </div>
+    <div>
+      <div class="mkc-heading">
+        <p class="mkc-eyebrow">Compatibilidade</p>
+        <h2>O encaixe certo para a sua picape.</h2>
+        <p>Selecione o modelo e o ano no formulário. A equipe confirma cada medida antes do pedido.</p>
+      </div>
+      <div class="mkc-vehicle-list">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+          <span><strong>Toyota Hilux</strong><small>2006–2015 e 2015–2026</small></span>
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+          <span><strong>Mitsubishi Triton</strong><small>2008–2017, 2017–2024 e 2024–2026</small></span>
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+          <span><strong>Volkswagen Amarok</strong><small>2012–2026</small></span>
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+          <span><strong>Nissan Frontier</strong><small>2017–2026</small></span>
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+          <span><strong>Ford Ranger</strong><small>2013–2023 e 2023–2026</small></span>
+        </div>
+      </div>
+      <p class="mkc-compat__note">Não encontrou seu carro? Fale com a equipe para avaliar uma configuração.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Seção 11 -- "Instalação e suporte" / "Do encaixe à estrada, com acompanhamento
+     MKK." COMPACTADA (pedido literal da dona): cartão de garantia mais baixo (era
+     min-height:320px no Cinematic original, aqui 210px) e passos mais justos. MESMO
+     texto de hoje, nada cortado. -->
+<section class="mkc-section mkc-section-bg mkc-full" id="instalacao">
+  <div class="mkc-inner mkc-install__layout">
+    <div>
+      <div class="mkc-heading">
+        <p class="mkc-eyebrow">Instalação e suporte</p>
+        <h2>Do encaixe à estrada, com acompanhamento MKK.</h2>
+        <p>A instalação especializada respeita a configuração do veículo e prepara a Canopy para o uso escolhido.</p>
+      </div>
+      <div class="mkc-install__steps">
+        <div class="mkc-install__step">
+          <span>01</span>
+          <strong>Conferência</strong>
+          <p>Modelo, ano e uso pretendido.</p>
+        </div>
+        <div class="mkc-install__step">
+          <span>02</span>
+          <strong>Configuração</strong>
+          <p>Base e acessórios sob medida.</p>
+        </div>
+        <div class="mkc-install__step">
+          <span>03</span>
+          <strong>Instalação</strong>
+          <p>Montagem, testes e orientação.</p>
+        </div>
+      </div>
+    </div>
+    <div class="mkc-warranty">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+      <span>Garantia MKK</span>
+      <h3>Suporte de quem projeta, fabrica e conhece o produto.</h3>
+      <p>Atendimento especializado antes, durante e depois da instalação.</p>
+      <div class="mkc-warranty__team">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg>
+        Equipe técnica MKK Off Road
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Seção 12 -- FAQ, <details>/<summary> nativos (padrão real de hoje, sem JS de
+     acordeão -- exclusividade via atributo name compartilhado). 6 perguntas reais. -->
+<section class="mkc-section mkc-section-bg mkc-section-bg--surface mkc-full" id="faq">
+  <div class="mkc-inner mkc-faq__layout">
+    <div class="mkc-heading">
+      <p class="mkc-eyebrow">Perguntas frequentes</p>
+      <h2>Tudo o que você precisa confirmar antes de escolher.</h2>
+      <p>Se a sua dúvida não estiver aqui, um especialista MKK pode avaliar seu caso.</p>
+    </div>
+    <div class="mkc-faq__list">
+      <details class="mkc-faq__item" name="mkc-faq" open>
+        <summary><span>A Canopy Armor serve na minha picape?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <p>A Canopy possui encaixes desenvolvidos para diferentes gerações de Hilux, Triton, Amarok, Frontier e Ranger. Antes do pedido, a equipe confirma o modelo e o ano exatos do veículo.</p>
+      </details>
+      <details class="mkc-faq__item" name="mkc-faq">
+        <summary><span>A instalação exige alteração permanente no veículo?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <p>A fixação é dedicada ao modelo da picape e foi pensada para preservar o veículo. A configuração final e qualquer necessidade específica são confirmadas com o especialista antes da instalação.</p>
+      </details>
+      <details class="mkc-faq__item" name="mkc-faq">
+        <summary><span>Os armários e a mesa já acompanham a Canopy?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <p>A Canopy recebe diferentes módulos. Armários, mesa deslizante, painel MOLLE e outros acessórios são opcionais, permitindo montar a configuração ideal para seu uso.</p>
+      </details>
+      <details class="mkc-faq__item" name="mkc-faq">
+        <summary><span>Como funciona o sistema Dust Out?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <p>O sistema trabalha com pressurização para ajudar a mitigar a entrada de poeira. O resultado também depende da vedação da caçamba e das condições de uso.</p>
+      </details>
+      <details class="mkc-faq__item" name="mkc-faq">
+        <summary><span>Posso levar barraca de teto e outros equipamentos?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <p>A estrutura e os trilhos superiores ampliam as possibilidades de configuração. A capacidade e a distribuição da carga devem ser validadas pela equipe conforme o veículo e os acessórios escolhidos.</p>
+      </details>
+      <details class="mkc-faq__item" name="mkc-faq">
+        <summary><span>Como recebo um orçamento?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <p>Preencha o formulário com o modelo da sua picape e o uso pretendido. Um especialista da MKK entrará em contato para confirmar compatibilidade e montar a proposta.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- Seção 13 (último arquivo do bloco A) -- introdução do Formulário nativo do RD, que
+     vem logo depois (colado manualmente no editor, ver MONTAGEM.md Passo 2). Fundo
+     branco de verdade (var(--mkc-bg)) igual ao resto do site, nesta seção e no
+     Formulário logo abaixo. Copy real de hoje: eyebrow, h2, texto e os 3
+     "lead-points". Âncora #formulario -- MANTIDA NA MESMA POSIÇÃO DE HOJE (regra 4 do
+     pedido: a dona vai dizer depois pra onde ele sobe; a posição é 1 linha de config
+     em gerar_pacote.py, ver MONTAGEM.md "Como mudar a posição do formulário"). -->
+<section class="mkc-section mkc-lead-topo mkc-full" id="formulario">
+  <div class="mkc-inner">
+    <div class="mkc-heading">
+      <p class="mkc-eyebrow">Solicite sua proposta</p>
+      <h2>Sua picape pode ir muito além.</h2>
+      <p>Conte como você pretende usar a Canopy Armor. A equipe MKK confirma a compatibilidade e prepara uma proposta personalizada.</p>
+    </div>
+    <ul class="mkc-lead__points">
+      <li><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Atendimento consultivo</li>
+      <li><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Validação do veículo</li>
+      <li><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Configuração de acessórios</li>
+    </ul>
+  </div>
+</section>
+
+  <section class="mkc-section mkc-full" style="background:var(--mkc-bg);padding:0 0 clamp(36px,4.2vw,66px);position:relative;">
+    <div class="mkc-inner">
+    <div class="bricks--component bricks-form rd-form">
+      <form id="conversion-form" onsubmit="return false;" novalidate>
+        <div class="bricks-form__fieldset">
+          <div class="bricks-form__field">
+            <label for="pv-nome" class="bricks-form__label">Nome*</label>
+            <input id="pv-nome" class="bricks-form__input required js-text js-field-name" name="name" type="text" placeholder="Nome *" required>
+          </div>
+          <div class="bricks-form__field">
+            <label for="pv-email" class="bricks-form__label">Email*</label>
+            <input id="pv-email" class="bricks-form__input required js-email js-field-email" name="email" type="email" placeholder="Email *" required>
+          </div>
+          <div class="bricks-form__field with-select-flags">
+            <label for="pv-tel" class="bricks-form__label">Telefone*</label>
+            <div class="phone-input-group">
+              <div class="select2-container form-control phone-country">
+                <a href="javascript:void(0)" class="select2-choice" tabindex="-1">
+                  <span class="select2-chosen"><img class="flag" width="26" src="https://dk9suync0k2va.cloudfront.net/js/rd/stable/flags/4x3/br.svg" alt="BR"></span>
+                  <span class="select2-arrow"><b></b></span>
+                </a>
+              </div>
+              <input id="pv-tel" class="bricks-form__input required phone js-phone js-field-personal_phone" name="personal_phone" type="tel" placeholder="Telefone *" required>
+            </div>
+          </div>
+          <div class="bricks-form__field">
+            <label for="pv-modelo" class="bricks-form__label">Qual seu modelo de veículo?*</label>
+            <input id="pv-modelo" class="bricks-form__input required js-text js-field-cf_modelo_de_veiculo" name="cf_modelo_de_veiculo" type="text" placeholder="Qual seu modelo de veículo? *" required>
+          </div>
+          <div class="bricks-form__field">
+            <label for="pv-captcha" class="bricks-form__label"><span id="math_expression">9 + 7 = ?</span></label>
+            <input id="pv-captcha" class="bricks-form__input math rd-bricks-captcha" name="captcha" type="text" placeholder="9 + 7 = ?" required>
+          </div>
+        </div>
+        <div class="bricks-form__submit">
+          <button type="submit" class="bricks--component bricks--component-button rd-button" disabled title="Prévia -- envio desativado de propósito">Lorem Ipsum Dolor</button>
+        </div>
+      </form>
+    </div>
+    </div>
+  </section>
+<!-- Seção 14 (bloco B) -- Institucional, conteúdo literal de hoje (marca + texto +
+     3 fatos: +10 anos, BR, MKK). Fundo branco (volta ao padrão da página). -->
+<section class="mkc-section mkc-section-bg mkc-full" id="sobre">
+  <div class="mkc-inner mkc-about__layout">
+    <div class="mkc-about__mark"><img src="img/logos/logo-mkk.svg" alt="Símbolo MKK" loading="lazy" /></div>
+    <div>
+      <p class="mkc-eyebrow">MKK Off Road</p>
+      <h2 style="font-family:var(--mkc-display);text-transform:uppercase;letter-spacing:-.03em;margin:10px 0 12px;font-size:clamp(1.7rem,2.6vw,2.3rem);font-weight:800;line-height:1;">Mais de 10 anos criando equipamentos para quem escolhe outro caminho.</h2>
+      <p style="color:var(--mkc-muted);line-height:1.6;max-width:600px;font-size:.95rem;">Referência em bagageiros e barracas de teto, a MKK reúne engenharia, fabricação nacional e experiência off-road para desenvolver produtos que funcionam no uso real.</p>
+    </div>
+    <div class="mkc-about__facts">
+      <span><strong>+10</strong> anos de mercado</span>
+      <span><strong>BR</strong> projeto nacional</span>
+      <span><strong>MKK</strong> suporte especializado</span>
+    </div>
+  </div>
+</section>
+
+<!-- Seção 15 (bloco B) -- Rodapé: logo + endereço + copyright, EXATAMENTE como o
+     footer real de hoje (`.site-footer`) -- sem menu de navegação: o DOM de produção
+     não tem `<nav>` no rodapé, só marca + 2 parágrafos. Não inventar um menu aqui. -->
+<section class="mkc-section mkc-footer mkc-full">
+  <div class="mkc-inner mkc-footer__inner">
+    <a href="#topo" class="mkc-footer__brand">
+      <img class="mkc-footer__logo" src="img/logos/logo-mkk.svg" alt="MKK Off Road" loading="lazy" />
+      <span class="mkc-footer__brandtext">Off Road</span>
+    </a>
+    <div class="mkc-footer__text">
+      <p class="mkc-footer__p">Rod. Poços de Caldas, 970 &#8211; Distrito Industrial, Itajubá &#8211; MG</p>
+      <p class="mkc-footer__p">&copy; 2026 MKK Off Road. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+// ===== 3-body.html gerado (caminhos relativos) =====
+/* Consumidor: campo "Javascript em BODY" da Edição Avançada da LP "Canopy Armor" no
+   RD Station. O campo JÁ VEM com a tag de abertura e a de fechamento do script no
+   editor -- cole só o código abaixo NO MEIO delas, não repita as tags. Isto é
+   JavaScript puro (não HTML), por isso os comentários usam barra-asterisco e não o
+   comentário de HTML -- e por isso NUNCA se deve digitar a sequência que fecha este
+   tipo de comentário no meio do texto explicativo (bug real na Bagageiros, ver
+   PLAYBOOK.md seção 6).
+   Cobre só o ajuste dos rótulos/placeholders do Formulário nativo do RD -- não tem
+   JS de vídeo (o "Review completo" é um placeholder estático, igual a hoje, sem
+   vídeo próprio tocando) nem JS de acordeão do FAQ (usa details/summary nativos
+   do HTML5, com o atributo "name" compartilhado garantindo que só um fique aberto
+   por vez nos navegadores atuais).
+   Se o JavaScript falhar por qualquer motivo, a página continua legível: o
+   formulário mostra os rótulos genéricos do RD. */
+(function () {
+  "use strict";
+
+  function onReady(fn) {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", fn);
+    } else {
+      fn();
+    }
+  }
+
+  /* Formulário nativo do RD (#conversion-form) -- ele nasce sem os rótulos/
+   * placeholders desta LP (rótulos genéricos do campo). Aqui só AJUSTA o que já
+   * existe (texto do placeholder, texto do rótulo) -- nunca mexe em
+   * name/validação/obrigatoriedade. Localiza cada campo pelo name real (name,
+   * email, personal_phone, cf_modelo_de_veiculo) e cai para busca por texto do
+   * rótulo se o RD mudar algum name no futuro. Se o formulário não estiver na
+   * página, não faz nada -- degrada bem. */
+  function ajustarFormularioRD() {
+    var form = document.getElementById("conversion-form");
+    if (!form) { return; }
+
+    function porNome(name) {
+      return form.querySelector('[name="' + name + '"]');
+    }
+    function porRotulo(trecho) {
+      var labels = form.querySelectorAll(".bricks-form__label");
+      for (var i = 0; i < labels.length; i++) {
+        if (labels[i].textContent.toLowerCase().indexOf(trecho) !== -1) {
+          var forId = labels[i].getAttribute("for");
+          if (forId) {
+            var campoPorId = document.getElementById(forId);
+            if (campoPorId) { return campoPorId; }
+          }
+          var wrap = labels[i].closest(".bricks-form__field");
+          if (wrap) { return wrap.querySelector("input, textarea, select"); }
+        }
+      }
+      return null;
+    }
+    function trocarRotulo(campo, textoNovo) {
+      if (!campo) { return; }
+      var wrap = campo.closest(".bricks-form__field");
+      var label = wrap ? wrap.querySelector(".bricks-form__label") : null;
+      if (!label) { return; }
+      var temAsterisco = label.textContent.indexOf("*") !== -1;
+      label.textContent = textoNovo + (temAsterisco ? "*" : "");
+    }
+
+    var campoNome = porNome("name") || porRotulo("nome");
+    if (campoNome) {
+      campoNome.setAttribute("placeholder", "Seu nome completo");
+      trocarRotulo(campoNome, "Nome");
+    }
+
+    var campoEmail = porNome("email") || porRotulo("email");
+    if (campoEmail) {
+      campoEmail.setAttribute("placeholder", "voce@email.com");
+      trocarRotulo(campoEmail, "Email");
+    }
+
+    var campoTelefone = porNome("personal_phone") || porRotulo("telefone");
+    if (campoTelefone) {
+      campoTelefone.setAttribute("placeholder", "(00) 00000-0000");
+      trocarRotulo(campoTelefone, "WhatsApp");
+    }
+
+    var campoModelo = porNome("cf_modelo_de_veiculo") || porRotulo("modelo");
+    if (campoModelo) {
+      campoModelo.setAttribute("placeholder", "Ex.: Ranger 2024");
+      trocarRotulo(campoModelo, "Modelo de Veículo");
+    }
+
+    // marca o campo da conta anti-robô como "linha inteira" pro CSS -- reforço
+    // pra navegador sem suporte a :has() (ver 1-css.css, .mkc-form-full)
+    var campoCaptcha = form.querySelector(".rd-bricks-captcha, [name='captcha']");
+    if (campoCaptcha) {
+      var wrapCaptcha = campoCaptcha.closest(".bricks-form__field");
+      if (wrapCaptcha) { wrapCaptcha.classList.add("mkc-form-full"); }
+    }
+  }
+
+  onReady(function () {
+    ajustarFormularioRD();
+    // o Formulário nativo do RD pode montar um pouco depois do resto da página
+    // (telefone internacional, conta anti-robô) -- tenta de novo uma vez;
+    // ajustarFormularioRD não duplica nada, só reescreve texto.
+    window.setTimeout(ajustarFormularioRD, 1200);
+  });
+})();
+
+</script>
+</body>
+</html>
