@@ -217,9 +217,10 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
    paisagem 3:2 (antes a foto era quadrada).
    06/11 (o dono: "algumas fotos ficaram cortadas", no desktop e no celular): a foto 1 deixou
    de ser ampliada 152% e ancorada a direita (mostrava 36% dela) e aparece INTEIRA, em 5:4,
-   a proporcao do arquivo; no desktop as duas fotos sairam das faixas de 400 px (mostravam
-   40% e 48%) e cada bloco virou meio a meio, texto num painel preto e foto inteira, em
-   zigue-zague (Acesso: texto | foto; Aluminio: foto | texto).
+   a proporcao do arquivo. No desktop o meio a meio com painel preto durou uma rodada (o dono
+   achou estranho): voltou a faixa com o texto sobre a foto, mais alta (Acesso 380-560 px,
+   aluminio 340-460 px, antes 300-400), e a foto do Acesso espelhada para o texto nao cobrir
+   a pessoa.
    ========================================================================= */
 .mkc-acesso { background: var(--mkc-white); border-radius: var(--mkc-r); overflow: hidden; }
 .mkc-acesso__media { position: relative; aspect-ratio: 3 / 2; background: #111; overflow: hidden; }
@@ -255,22 +256,26 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
 .mkc-acesso__feats h3 { font-family: var(--mkc-body); font-size: .8rem; letter-spacing: .02em; font-weight: 800; color: var(--mkc-text); margin: 1px 0 3px; }
 .mkc-acesso__feats p { font-size: .84rem; line-height: 1.4; color: #4a4d52; }
 @media (min-width: 768px) {
-  /* meio a meio: painel preto de texto + foto inteira na proporção dela (sem faixa baixa) */
-  .mkc-acesso__media { aspect-ratio: auto; display: grid; background: #0a0a0b; }
-  .mkc-acesso__media--car { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
-  .mkc-acesso__media--car .mkc-acesso__photo { order: 2; aspect-ratio: 5 / 4; }
-  .mkc-acesso__media--tec { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); }
-  .mkc-acesso__media--tec > img { position: static; aspect-ratio: 3 / 2; height: auto; }
-  .mkc-acesso__over {
-    position: static; display: flex; flex-direction: column; justify-content: center;
-    padding: 34px 40px; background: #0a0a0b;
+  /* faixa com o texto sobre a foto, como antes (o dono, 06/11: o meio a meio com painel preto
+     ficou "estranho esse pretão"). As faixas ficaram mais altas que os 400 px de antes, para
+     não voltar a cortar o rosto e a porta. */
+  .mkc-acesso__media { aspect-ratio: auto; height: clamp(340px, 32vw, 460px); }
+  .mkc-acesso__media--car { height: clamp(380px, 38vw, 560px); }
+  .mkc-acesso__media--car .mkc-acesso__photo { position: absolute; inset: 0; aspect-ratio: auto; }
+  /* Acesso total espelhado só no desktop, como na peça (rodada 2): o homem e a porta vão para a
+     direita, livres, e o texto fica sobre a caçamba escura, não sobre a pessoa. */
+  .mkc-acesso__media--car img { object-position: 50% 10%; transform: scaleX(-1); }
+  .mkc-acesso__media--tec img { object-position: 50% 38%; }
+  .mkc-acesso__over,
+  .mkc-acesso__media--car .mkc-acesso__over {
+    position: absolute; top: 0; bottom: 0; left: 0; right: auto; width: 54%;
+    display: flex; flex-direction: column; justify-content: center; padding: 34px 34px 34px 40px;
+    background: linear-gradient(to right, rgba(0,0,0,.82) 0, rgba(0,0,0,.6) 62%, rgba(0,0,0,0) 100%);
   }
-  .mkc-acesso__media--car .mkc-acesso__over { padding: 34px 40px; background: #0a0a0b; }
   .mkc-acesso__over h2 { font-size: 2.9rem; }
   .mkc-acesso__over p { font-size: 1.02rem; max-width: 40ch; }
   .mkc-acesso__eyebrow { font-size: .9rem; margin-bottom: 8px; }
-  /* no desktop a foto do alumínio fica à esquerda: o selo vai para o canto dela */
-  .mkc-acesso__stamp { top: 18px; right: auto; left: 18px; font-size: .8rem; padding: 7px 14px 7px 11px; }
+  .mkc-acesso__stamp { top: 18px; right: 18px; font-size: .8rem; padding: 7px 14px 7px 11px; }
   .mkc-acesso__stamp svg { width: 18px; height: 18px; }
   .mkc-acesso__feats { grid-template-columns: repeat(3, 1fr); gap: 28px; padding: 26px 34px; }
   .mkc-acesso__feats li { padding: 0; gap: 14px; }
@@ -405,6 +410,7 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
 .mkc-pill--full { grid-column: 1 / -1; }
 .mkc-pill--full small span { white-space: nowrap; }
 .mkc-compat__note { margin-top: 14px; color: var(--mkc-muted); font-size: .82rem; line-height: 1.45; }
+.mkc-compat__note strong { color: var(--mkc-text); }
 /* "GIF" de fotos de clientes (rodada 3): so existe quando compat-fotos.json tem fotos.
    Troca por crossfade (opacity); a proporcao 3:2 (a das fotos de estudio) e fixa, entao nada pula. */
 .mkc-gif { position: relative; aspect-ratio: 3 / 2; margin-top: 16px; background: #111; border-radius: 12px; overflow: hidden; }
@@ -911,7 +917,7 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
       <figure class="mkc-gif__slide"><img src="img/compat/frontier.webp" alt="Canopy Armor instalada na picape de um cliente" loading="lazy" width="900" height="600" /></figure>
       <figure class="mkc-gif__slide"><img src="img/compat/ranger.webp" alt="Canopy Armor instalada na picape de um cliente" loading="lazy" width="900" height="600" /></figure>
       </div>
-      <p class="mkc-compat__note">A equipe confirma cada medida antes do pedido. Não encontrou seu carro? Fale com a equipe para avaliar uma configuração.</p>
+      <p class="mkc-compat__note"><strong>Compra segura:</strong> nossa equipe confere as medidas e orienta você para garantir a canopy perfeita para seu veículo.</p>
     </div>
   </div>
 </section>
