@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Prévia -- LP Canopy Armor MKK Off Road (rodada 2, 30/09)</title>
+<title>Prévia -- LP Canopy Armor MKK Off Road (rodada 3, 01/10)</title>
 <!--
   Gerado por gerar_pacote.py -- NÃO editar à mão (as mudanças se perdem no próximo
   "python gerar_pacote.py"). Edite as fontes em secoes/, 1-css.css, 3-body.html.
@@ -34,8 +34,10 @@ html, body { margin:0; background:#f1f0f0; }
    (#f1f0f0), blocos dos itens escuros, acento âmbar (#ffb243), títulos condensados.
 
    ESTRUTURA: 1. fontes/reset/tokens  2. botão e títulos  3. header + hero  4. acesso total
-   5. itens inclusos  6. itens adicionais  7. compatibilidade  8. formulário (RD)  9. FAQ
-   10. rodapé. */
+   (sanduíche, rodada 3)  5. itens inclusos  5b. vídeo de review (rodada 3)  6. módulos
+   configuráveis/adicionais  7. compatibilidade (+ GIF de fotos de clientes)  8. formulário (RD)
+   9. FAQ  9b. garantia + avaliações (rodada 3)  10. rodapé.
+   RODADA 3 (01/10, Suellen): ver MONTAGEM.md, "Rodada 3". */
 
 /* ---------- fontes ---------- */
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;0,800;1,700&family=Inter:wght@400;500;600;700;800&display=swap');
@@ -100,6 +102,22 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
 }
 .mkc-btn:hover, .mkc-btn:focus { transform: scale(1.03); }
 .mkc-btn--primary { background: var(--mkc-accent); color: #10110f; box-shadow: 0 10px 30px rgba(255,178,67,.25); }
+
+/* ---------- preço ao lado do botão (06/11, pedido do dono; mesmo molde da Barracas) ----------
+   Botão + "A partir de R$ 17.800" lado a lado. Celular: a dupla ocupa a largura toda e o
+   botão encolhe (o preço não quebra). --onDark = seção preta (hero, avaliações). */
+.mkc-cta-preco { display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; }
+.mkc-cta-preco .mkc-btn { flex: 1 1 auto; min-width: 0; padding: 0 16px; }
+.mkc-preco { flex: 0 0 auto; font-family: var(--mkc-body); font-size: .75rem; line-height: 1.25; color: var(--mkc-muted); text-align: left; white-space: nowrap; }
+.mkc-preco strong { display: block; font-family: var(--mkc-display); font-size: 1.4rem; font-weight: 800; line-height: 1.05; letter-spacing: .01em; color: var(--mkc-text); }
+.mkc-preco--onDark { color: rgba(255,255,255,.75); }
+.mkc-preco--onDark strong { color: var(--mkc-accent); }
+@media (min-width: 768px) {
+  .mkc-cta-preco { display: inline-flex; width: auto; gap: 20px; }
+  .mkc-cta-preco .mkc-btn { flex: 0 0 auto; padding: 0 24px; }
+  .mkc-preco { font-size: .85rem; }
+  .mkc-preco strong { font-size: 1.65rem; }
+}
 
 /* ---------- títulos e "eyebrow" ---------- */
 .mkc-eyebrow {
@@ -190,42 +208,69 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
 }
 
 /* =========================================================================
-   03. ACESSO TOTAL -- cartão branco: foto (com título e texto por cima) + 3 destaques
-   com ícone. Celular: foto quadrada em cima e destaques compactos embaixo.
+   03. ACESSO TOTAL em SANDUICHE (rodada 3, 01/10) -- um cartao branco: foto do Acesso
+   total (titulo e texto por cima) -> 3 destaques com icone -> foto "O essencial ja nasce
+   integrado." (sobretitulo, texto e selo "Projeto MKK"). Celular: as duas fotos em
+   paisagem 3:2 (antes a foto era quadrada). A foto 1 usa --car: a imagem e ampliada e
+   ancorada a direita, para mostrar a porta, o vidro e a cacamba e deixar a pessoa
+   (que esta na metade esquerda da foto) fora do quadro.
    ========================================================================= */
 .mkc-acesso { background: var(--mkc-white); border-radius: var(--mkc-r); overflow: hidden; }
-.mkc-acesso__media { position: relative; aspect-ratio: 1 / 1; background: #1a1a1a; overflow: hidden; }
-.mkc-acesso__media img { width: 100%; height: 100%; object-fit: cover; object-position: 38% 20%; }
+.mkc-acesso__media { position: relative; aspect-ratio: 3 / 2; background: #111; overflow: hidden; }
+.mkc-acesso__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.mkc-acesso__media--car img { inset: auto; right: 0; top: -63%; width: 152%; max-width: none; height: auto; }
+/* foto 1: o texto NAO fica sobre a foto no celular (cobria o carro); vai num painel preto logo abaixo */
+.mkc-acesso__media--car { aspect-ratio: auto; background: #0a0a0b; }
+.mkc-acesso__media--car .mkc-acesso__photo { position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: #111; }
+.mkc-acesso__media--car .mkc-acesso__over { position: static; padding: 14px 16px 16px; background: #0a0a0b; }
+.mkc-acesso__media--tec img { object-position: 50% 30%; }
 .mkc-acesso__over {
-  position: absolute; left: 0; right: 0; bottom: 0; color: #fff; padding: 64px 16px 16px;
-  background: linear-gradient(to top, rgba(0,0,0,.9) 0, rgba(0,0,0,.72) 50%, rgba(0,0,0,0) 100%);
+  position: absolute; left: 0; right: 0; bottom: 0; color: #fff; padding: 56px 16px 14px;
+  background: linear-gradient(to top, rgba(0,0,0,.92) 0, rgba(0,0,0,.74) 52%, rgba(0,0,0,0) 100%);
 }
-.mkc-acesso__over h2 { color: var(--mkc-accent); font-size: 2.05rem; margin: 0 0 6px; }
-.mkc-acesso__over p { font-size: .9rem; line-height: 1.45; color: #f2f2f2; max-width: 34ch; }
-.mkc-acesso__feats { display: grid; gap: 4px; padding: 10px 14px 14px; }
-.mkc-acesso__feats li { display: flex; gap: 12px; align-items: flex-start; padding: 8px 0; }
+.mkc-acesso__over h2 { color: var(--mkc-accent); font-size: 1.7rem; margin: 0 0 4px; }
+.mkc-acesso__over p { font-size: .84rem; line-height: 1.4; color: #f2f2f2; max-width: 36ch; }
+.mkc-acesso__eyebrow {
+  display: block; margin-bottom: 4px; color: #fff; opacity: .85; font-family: var(--mkc-display);
+  letter-spacing: .16em; text-transform: uppercase; font-size: .72rem; font-weight: 700;
+}
+.mkc-acesso__stamp {
+  position: absolute; top: 10px; right: 10px; z-index: 2; display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(0,0,0,.62); color: #fff; border: 1px solid rgba(255,255,255,.28); border-radius: 999px;
+  padding: 5px 11px 5px 9px; font-size: .7rem; font-weight: 700; letter-spacing: .03em; text-transform: uppercase;
+}
+.mkc-acesso__stamp svg { width: 15px; height: 15px; color: var(--mkc-accent); flex: none; }
+.mkc-acesso__feats { display: grid; gap: 2px; padding: 8px 14px 10px; }
+.mkc-acesso__feats li { display: flex; gap: 12px; align-items: flex-start; padding: 7px 0; }
 .mkc-acesso__icon {
-  flex: none; display: grid; place-items: center; width: 46px; height: 46px;
+  flex: none; display: grid; place-items: center; width: 44px; height: 44px;
   border: 1.5px solid #dedede; border-radius: 10px; color: #f0a020;
 }
-.mkc-acesso__icon svg { width: 25px; height: 25px; }
+.mkc-acesso__icon svg { width: 24px; height: 24px; }
 .mkc-acesso__feats h3 { font-family: var(--mkc-body); font-size: .8rem; letter-spacing: .02em; font-weight: 800; color: var(--mkc-text); margin: 1px 0 3px; }
 .mkc-acesso__feats p { font-size: .84rem; line-height: 1.4; color: #4a4d52; }
 @media (min-width: 768px) {
-  .mkc-acesso { display: grid; grid-template-columns: 1.75fr 1fr; min-height: 470px; }
-  .mkc-acesso__media { aspect-ratio: auto; min-height: 470px; }
-  .mkc-acesso__media img { position: absolute; inset: 0; transform: scaleX(-1); object-position: 60% 30%; }
+  .mkc-acesso__media { aspect-ratio: auto; height: clamp(300px, 29vw, 400px); }
+  .mkc-acesso__media--car { aspect-ratio: auto; height: clamp(300px, 29vw, 400px); }
+  .mkc-acesso__media--car .mkc-acesso__photo { position: absolute; inset: 0; aspect-ratio: auto; }
+  .mkc-acesso__media--car img { inset: 0; right: auto; top: 0; width: 100%; height: 100%; object-position: 50% 66%; }
+  .mkc-acesso__media--car .mkc-acesso__over { position: absolute; background: linear-gradient(to right, rgba(0,0,0,.82) 0, rgba(0,0,0,.6) 62%, rgba(0,0,0,0) 100%); }
+  .mkc-acesso__media--tec img { object-position: 50% 38%; }
   .mkc-acesso__over {
-    top: 0; right: auto; width: 52%; display: flex; flex-direction: column; justify-content: center; padding: 34px 34px 34px 38px;
-    background: linear-gradient(to right, rgba(0,0,0,.72) 0, rgba(0,0,0,.5) 62%, rgba(0,0,0,0) 100%);
+    top: 0; right: auto; width: 54%; display: flex; flex-direction: column; justify-content: center; padding: 34px 34px 34px 40px;
+    background: linear-gradient(to right, rgba(0,0,0,.82) 0, rgba(0,0,0,.6) 62%, rgba(0,0,0,0) 100%);
   }
   .mkc-acesso__over h2 { font-size: 2.9rem; }
-  .mkc-acesso__over p { font-size: 1.02rem; }
-  .mkc-acesso__feats { align-content: center; gap: 12px; padding: 26px 30px; }
-  .mkc-acesso__icon { width: 60px; height: 60px; border-radius: 12px; }
-  .mkc-acesso__icon svg { width: 32px; height: 32px; }
+  .mkc-acesso__over p { font-size: 1.02rem; max-width: 40ch; }
+  .mkc-acesso__eyebrow { font-size: .9rem; margin-bottom: 8px; }
+  .mkc-acesso__stamp { top: 18px; right: 18px; font-size: .8rem; padding: 7px 14px 7px 11px; }
+  .mkc-acesso__stamp svg { width: 18px; height: 18px; }
+  .mkc-acesso__feats { grid-template-columns: repeat(3, 1fr); gap: 28px; padding: 26px 34px; }
+  .mkc-acesso__feats li { padding: 0; gap: 14px; }
+  .mkc-acesso__icon { width: 58px; height: 58px; border-radius: 12px; }
+  .mkc-acesso__icon svg { width: 31px; height: 31px; }
   .mkc-acesso__feats h3 { font-size: .95rem; }
-  .mkc-acesso__feats p { font-size: .92rem; }
+  .mkc-acesso__feats p { font-size: .9rem; }
 }
 
 /* =========================================================================
@@ -258,20 +303,57 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
 }
 
 /* =========================================================================
+   04b. VIDEO DE REVIEW (rodada 3, 01/10) -- miniatura 16:9 com play; o player do YouTube
+   so nasce no clique (3-body.html). Celular: titulo, video, lista. Desktop: texto e
+   lista a esquerda, video a direita.
+   ========================================================================= */
+.mkc-video { background: var(--mkc-white); border-radius: var(--mkc-r); padding: 18px 16px 16px; display: grid; gap: 14px; }
+.mkc-video__copy h2 { margin: 8px 0 8px; font-size: 1.7rem; }
+.mkc-video__text { color: var(--mkc-muted); font-size: .92rem; line-height: 1.5; }
+.mkc-video__frame { position: relative; aspect-ratio: 16 / 9; background: #0a0a0b; border-radius: 12px; overflow: hidden; }
+.mkc-video__frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.mkc-video__poster { position: absolute; inset: 0; display: block; }
+.mkc-video__poster img { width: 100%; height: 100%; object-fit: cover; }
+.mkc-video__poster::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.45), rgba(0,0,0,.08) 60%); }
+.mkc-video__play {
+  position: absolute; z-index: 2; left: 50%; top: 50%; transform: translate(-50%, -50%); display: grid; place-items: center;
+  width: 68px; height: 68px; border-radius: 50%; background: var(--mkc-accent); color: #10110f;
+  box-shadow: 0 10px 30px rgba(0,0,0,.4); transition: transform .2s;
+}
+.mkc-video__play svg { width: 28px; height: 28px; margin-left: 3px; }
+.mkc-video__poster:hover .mkc-video__play, .mkc-video__poster:focus-visible .mkc-video__play { transform: translate(-50%, -50%) scale(1.08); }
+.mkc-video__list { display: flex; flex-direction: column; gap: 8px; }
+.mkc-video__list li { display: flex; align-items: center; gap: 10px; font-size: .9rem; font-weight: 600; color: var(--mkc-text); }
+.mkc-video__list svg { width: 20px; height: 20px; color: var(--mkc-accent-ink); flex: none; }
+@media (min-width: 768px) {
+  .mkc-video { grid-template-columns: 1fr 1.25fr; grid-template-areas: "copy frame" "list frame"; gap: 18px 44px; padding: 34px 38px; align-items: center; }
+  .mkc-video__copy { grid-area: copy; align-self: end; }
+  .mkc-video__frame { grid-area: frame; border-radius: 16px; }
+  .mkc-video__list { grid-area: list; align-self: start; }
+  .mkc-video__copy h2 { font-size: 2.9rem; }
+  .mkc-video__text { font-size: 1.05rem; }
+  .mkc-video__list li { font-size: 1rem; }
+}
+
+/* =========================================================================
    05. ITENS ADICIONAIS -- faixa da peça + fileira horizontal com scroll-snap. O
    carrossel sangra até a borda da tela no celular (o próximo cartão aparece).
    ========================================================================= */
-.mkc-strip { background: var(--mkc-white); border: 1.5px solid var(--mkc-accent); border-radius: var(--mkc-r); padding: 14px 16px 16px; }
-.mkc-strip__brand { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.mkc-strip__logo { white-space: nowrap; font-family: var(--mkc-display); font-weight: 800; font-size: 1.45rem; letter-spacing: .01em; text-transform: uppercase; color: #1c1d20; line-height: 1; }
-.mkc-strip__logo b { color: #f0a020; font-weight: 800; }
-.mkc-strip__slogan { display: flex; align-items: center; gap: 8px; color: #f0a020; }
-.mkc-strip__slogan svg { width: 30px; height: 30px; flex: none; }
-.mkc-strip__slogan span { color: #3a3c40; font-size: .68rem; line-height: 1.35; font-weight: 600; text-transform: uppercase; letter-spacing: .02em; }
-.mkc-strip__text { margin-top: 12px; font-size: .92rem; line-height: 1.45; color: #2c2e32; }
-.mkc-strip__text strong { font-weight: 800; }
-.mkc-carousel-head { display: flex; align-items: baseline; justify-content: space-between; margin: 18px 0 10px; }
-:where(.mkc-section) .mkc-carousel-head h2 { font-size: 1.5rem; }
+/* Rodada 3 (01/10): a caixa "Canopy Armor MKK" saiu; entra o bloco "Modulos configuraveis"
+   com o selo AMARELO "Organizacao inteligente" (o destaque que a Suellen pediu). */
+.mkc-mods { background: var(--mkc-white); border-radius: var(--mkc-r); padding: 18px 16px 18px; }
+.mkc-badge {
+  display: inline-flex; align-items: center; gap: 8px; background: var(--mkc-accent); color: #14120c;
+  border-radius: 999px; padding: 9px 18px 9px 14px; margin-bottom: 14px;
+  font-family: var(--mkc-display); font-weight: 800; font-size: 1.18rem; letter-spacing: .05em; text-transform: uppercase; line-height: 1;
+  box-shadow: 0 8px 22px rgba(255,178,67,.38);
+}
+.mkc-badge svg { width: 22px; height: 22px; flex: none; }
+.mkc-mods .mkc-eyebrow { display: flex; }
+.mkc-mods h2 { margin: 8px 0 10px; font-size: 1.9rem; }
+.mkc-mods__text { color: var(--mkc-muted); font-size: .92rem; line-height: 1.5; max-width: 620px; }
+.mkc-mods__apoio { margin-top: 12px; font-family: var(--mkc-display); font-weight: 800; font-size: 1.12rem; letter-spacing: .03em; text-transform: uppercase; color: var(--mkc-accent-ink); line-height: 1.2; }
+.mkc-carousel-head { display: flex; align-items: baseline; justify-content: flex-end; margin: 14px 0 8px; }
 .mkc-carousel-head__hint { display: inline-flex; align-items: center; gap: 6px; font-size: .76rem; font-weight: 600; color: var(--mkc-muted); }
 .mkc-carousel {
   display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: var(--mkc-pad);
@@ -288,14 +370,14 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
 .mkc-card__body h3 { font-size: 1.15rem; margin: 3px 0 4px; color: var(--mkc-text); }
 .mkc-card__body p { color: var(--mkc-muted); font-size: .84rem; line-height: 1.42; }
 @media (min-width: 768px) {
-  .mkc-strip { display: flex; align-items: center; gap: 30px; padding: 20px 30px; }
-  .mkc-strip__brand { flex: 0 0 auto; gap: 30px; }
-  .mkc-strip__logo { font-size: 2.1rem; }
-  .mkc-strip__slogan span { font-size: .74rem; }
-  .mkc-strip__text { margin: 0; flex: 1; padding-left: 30px; border-left: 1px solid var(--mkc-line); font-size: 1rem; }
-  .mkc-carousel-head { margin-top: 26px; }
-  .mkc-carousel-head__hint { display: none; }
-  .mkc-carousel { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; overflow: visible; margin: 0; padding: 0; scroll-snap-type: none; }
+  .mkc-mods { padding: 30px 38px 32px; }
+  .mkc-badge { font-size: 1.5rem; padding: 11px 24px 11px 18px; margin-bottom: 18px; }
+  .mkc-badge svg { width: 26px; height: 26px; }
+  .mkc-mods h2 { font-size: 2.9rem; }
+  .mkc-mods__text { font-size: 1.05rem; }
+  .mkc-mods__apoio { font-size: 1.4rem; margin-top: 14px; }
+  .mkc-carousel-head { display: none; }
+  .mkc-carousel { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; overflow: visible; margin: 16px 0 0; padding: 0; scroll-snap-type: none; }
   .mkc-card { flex: none; border-radius: 16px; }
 }
 
@@ -304,19 +386,42 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
    ========================================================================= */
 .mkc-compat { background: var(--mkc-white); border-radius: var(--mkc-r); padding: 18px 16px 18px; }
 .mkc-compat h2 { margin: 8px 0 14px; font-size: 1.6rem; }
-.mkc-pills { display: flex; flex-wrap: wrap; gap: 8px; }
-.mkc-pill { display: flex; flex-direction: column; gap: 1px; background: var(--mkc-bg); border: 1px solid var(--mkc-line); border-radius: 12px; padding: 8px 14px 9px; }
+/* 12 picapes: grade de 2 colunas no celular (390 px) = leitura em 6 linhas, sem parede; 3 colunas no desktop sem GIF. */
+.mkc-pills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.mkc-pill { min-width: 0; display: flex; flex-direction: column; gap: 1px; background: var(--mkc-bg); border: 1px solid var(--mkc-line); border-radius: 12px; padding: 8px 14px 9px; }
 .mkc-pill strong { font-size: .88rem; font-weight: 700; color: var(--mkc-text); line-height: 1.25; }
-.mkc-pill small { font-size: .74rem; color: var(--mkc-muted); }
+.mkc-pill small { font-size: .74rem; color: var(--mkc-muted); line-height: 1.35; }
 .mkc-compat__note { margin-top: 14px; color: var(--mkc-muted); font-size: .82rem; line-height: 1.45; }
+/* "GIF" de fotos de clientes (rodada 3): so existe quando compat-fotos.json tem fotos.
+   Troca por crossfade (opacity); a proporcao 3:2 (a das fotos de estudio) e fixa, entao nada pula. */
+.mkc-gif { position: relative; aspect-ratio: 3 / 2; margin-top: 16px; background: #111; border-radius: 12px; overflow: hidden; }
+.mkc-gif__slide { position: absolute; inset: 0; margin: 0; opacity: 0; transition: opacity .9s ease; }
+.mkc-gif__slide.mkc-on { opacity: 1; }
+.mkc-gif__slide img { width: 100%; height: 100%; object-fit: cover; }
+.mkc-gif__cap {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 26px 12px 9px; color: #fff; font-size: .78rem; font-weight: 600;
+  background: linear-gradient(to top, rgba(0,0,0,.7), rgba(0,0,0,0));
+}
+@media (prefers-reduced-motion: reduce) {
+  .mkc-gif__slide { transition: none; }
+  .mkc-gif__slide:not(:first-child) { display: none; }
+}
 @media (min-width: 768px) {
   .mkc-compat { padding: 28px 34px 30px; }
   .mkc-compat h2 { font-size: 2.2rem; }
   .mkc-pills { gap: 12px; }
+  .mkc-compat:not(.mkc-compat--gif) .mkc-pills { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .mkc-pill { padding: 12px 20px 13px; border-radius: 14px; }
   .mkc-pill strong { font-size: 1rem; }
   .mkc-pill small { font-size: .82rem; }
   .mkc-compat__note { font-size: .9rem; }
+  .mkc-compat--gif { display: grid; grid-template-columns: 1.1fr 1fr; grid-template-areas: ". gif" "eb gif" "h2 gif" "pills gif" "note gif" ". gif"; grid-template-rows: 1fr auto auto auto auto 1fr; column-gap: 40px; }
+  .mkc-compat--gif > .mkc-eyebrow { grid-area: eb; }
+  .mkc-compat--gif > h2 { grid-area: h2; }
+  .mkc-compat--gif > .mkc-pills { grid-area: pills; align-self: start; }
+  .mkc-compat--gif > .mkc-compat__note { grid-area: note; align-self: start; }
+  .mkc-compat--gif > .mkc-gif { grid-area: gif; margin-top: 0; align-self: center; border-radius: 16px; }
+  .mkc-gif__cap { font-size: .9rem; padding: 34px 18px 12px; }
 }
 
 /* =========================================================================
@@ -433,9 +538,67 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
 }
 
 /* =========================================================================
+   08b. GARANTIA MKK + 08c. AVALIACOES (rodada 3, 01/10) -- copiadas da Bagageiros
+   (selo + "GARANTIA MKK!" e carrossel de depoimentos) no padrao mkc- da Canopy: faixa
+   preta de ponta a ponta, acento ambar. Celular primeiro: selo e titulo lado a lado,
+   texto embaixo; um depoimento por tela.
+   ========================================================================= */
+.mkc-garantia { background: var(--mkc-dark); color: #fff; padding: 30px 0 22px; margin-top: 14px; }
+.mkc-garantia__inner { width: min(1140px, calc(100% - (var(--mkc-pad) * 2))); margin: 0 auto; display: grid; grid-template-columns: 96px 1fr; align-items: center; gap: 4px 18px; }
+.mkc-garantia__selo { grid-column: 1; grid-row: 1 / span 2; }
+.mkc-garantia__selo img { width: 96px; height: auto; }
+.mkc-garantia__text { display: contents; }
+.mkc-garantia__h1 { grid-column: 2; grid-row: 1; align-self: end; font-size: 1.7rem; line-height: .9; color: var(--mkc-accent); }
+.mkc-garantia__h2 { grid-column: 2; grid-row: 2; align-self: start; font-size: 3.1rem; line-height: .9; color: #fff; }
+.mkc-garantia__p { grid-column: 1 / -1; margin-top: 12px; font-size: .92rem; line-height: 1.5; font-weight: 500; color: #e9e9e9; }
+.mkc-depo { background: var(--mkc-dark); color: #fff; padding: 6px 0 0; }
+.mkc-depo__track {
+  display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  width: min(1140px, calc(100% - (var(--mkc-pad) * 2))); margin: 0 auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+}
+.mkc-depo__track::-webkit-scrollbar { display: none; }
+/* prova social (06/11): o cartão abre com a foto da picape do cliente (4:3, de ponta a ponta
+   do cartão) e o corpo (avatar real + logo da rede + nome + estrelas + texto) vem embaixo */
+.mkc-depo__slide { flex: 0 0 100%; scroll-snap-align: start; border: 1px solid #2c2c2e; border-radius: 14px; overflow: hidden; background: #111113; }
+.mkc-depo__foto { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; background: #1a1a1c; }
+.mkc-depo__body { padding: 14px 16px 16px; }
+.mkc-depo__top { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
+.mkc-depo__avatar-col { flex: 0 0 56px; width: 56px; position: relative; }
+.mkc-depo__avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; background: #222; }
+.mkc-depo__rede { position: absolute; top: -5px; right: -9px; width: 24px; height: 24px; border-radius: 6px; }
+.mkc-depo__name { font-size: .9rem; font-weight: 700; text-transform: uppercase; line-height: 1.3; color: #fff; }
+.mkc-depo__stars { width: 75px; height: 11px; margin-top: 6px; }
+.mkc-depo__text { font-size: .9rem; line-height: 1.55; color: #ececec; }
+.mkc-depo__dots { display: flex; justify-content: center; gap: 8px; padding: 14px 0 4px; }
+.mkc-depo__dots:empty { display: none; }
+.mkc-depo__dot { width: 8px; height: 8px; border-radius: 50%; background: #555; border: 0; cursor: pointer; padding: 0; }
+.mkc-depo__dot.mkc-is-active { background: var(--mkc-accent); }
+.mkc-depo__cta { text-align: center; padding: 16px var(--mkc-pad) 26px; }
+.mkc-depo__cta .mkc-btn { width: 100%; max-width: 420px; }
+@media (min-width: 768px) {
+  .mkc-garantia { padding: 52px 0 36px; }
+  .mkc-garantia__inner { grid-template-columns: 250px 1fr; gap: 0 56px; }
+  .mkc-garantia__selo { grid-row: 1 / span 3; }
+  .mkc-garantia__selo img { width: 250px; }
+  .mkc-garantia__h1 { font-size: 3.6rem; }
+  .mkc-garantia__h2 { font-size: 7rem; }
+  .mkc-garantia__p { grid-column: 2; grid-row: 3; margin-top: 18px; font-size: 1.25rem; max-width: 640px; }
+  .mkc-depo { padding-top: 10px; }
+  .mkc-depo__track { gap: 20px; }
+  .mkc-depo__slide { flex-basis: calc((100% - 40px) / 3); }
+  .mkc-depo__body { padding: 18px 20px 20px; }
+  .mkc-depo__avatar-col, .mkc-depo__avatar { width: 64px; height: 64px; flex-basis: 64px; }
+  .mkc-depo__name { font-size: 1rem; }
+  .mkc-depo__text { font-size: 1rem; }
+  .mkc-depo__cta { padding: 28px 20px 44px; }
+  .mkc-depo__cta .mkc-btn { width: auto; min-width: 340px; }
+}
+
+/* =========================================================================
    09. RODAPÉ -- mínimo
    ========================================================================= */
 .mkc-footer { background: #080809; border-top: 6px solid var(--mkc-strip); padding: 22px 0 30px; margin-top: 14px; }
+.mkc-depo + .mkc-footer { margin-top: 0; }
 .mkc-footer__inner { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
 .mkc-footer__brand { display: flex; align-items: center; gap: 10px; min-height: 44px; }
 .mkc-footer__logo { width: 26px; }
@@ -474,7 +637,8 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
      de apoio, "Projeto nacional" e os 3 fatos da faixa saíram; o conteúdo útil deles está
      nos blocos de Acesso total e Itens inclusos). A foto é a MESMA foto real hero-canopy
      (a peça é um recorte dela). No celular a picape fica no meio da coluna e o botão
-     embaixo; a partir de 768 px a foto vira o fundo. -->
+     embaixo; a partir de 768 px a foto vira o fundo. 06/11: "A partir de R$ 17.800" ao
+     lado do botão (pedido do dono, mesmo molde dos R$ 15.000 da Barracas). -->
 <section class="mkc-section mkc-hero mkc-full" id="topo">
   <div class="mkc-hero__head">
     <h1 class="mkc-hero__title">Canopy<br>Armor</h1>
@@ -483,28 +647,33 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
   <img class="mkc-hero__photo" src="img/hero-canopy.webp" alt="Picape preta com a Canopy Armor instalada" width="2400" height="1800" />
   <div class="mkc-hero__foot">
     <p class="mkc-hero__tag">Feita para proteger. <em>Criada para explorar.</em></p>
-    <a class="mkc-btn mkc-btn--primary" href="#formulario">Quero equipar minha picape
+    <div class="mkc-cta-preco"><a class="mkc-btn mkc-btn--primary" href="#formulario">Quero equipar minha picape
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-    </a>
+    </a><p class="mkc-preco mkc-preco--onDark">A partir de <strong>R$ 17.800</strong></p></div>
   </div>
 </section>
 
-<!-- Seção 3 -- "Acesso total" (rodada 2, 30/09). Cartão foto + texto e 3 destaques com
-     ícone, texto LITERAL da peça de divulgação da dona (referencia-2026-09-30/1.png).
-     Substitui 5 seções de lista da versão anterior (Diferenciais, Benefícios, "Acesso +
-     Módulos", Técnico e o placeholder de Review). No celular: foto em cima com o título
-     e o texto sobre a parte de baixo, destaques compactos embaixo; no desktop: foto à
-     esquerda (espelhada, como na peça) e destaques à direita. -->
+<!-- Seção 3 -- "Acesso total" em SANDUÍCHE (rodada 3, 01/10, pedido da Suellen).
+     De cima para baixo, num único cartão: (1) foto do Acesso total com o título e o texto
+     dela, (2) os 3 destaques com ícone (Leve e resistente / Luz interna / Vidro temperado)
+     e (3) a foto do bloco "O essencial já nasce integrado." da PRIMEIRA versão da LP
+     (sobretítulo "Recursos técnicos", texto e selo "Projeto MKK", mesma foto product-side).
+     Foto 1: reenquadrada para mostrar mais carro e menos a pessoa (a classe --car recorta
+     a metade direita da foto, onde estão a porta, o vidro e a caçamba; no celular o texto
+     fica num painel preto ABAIXO da foto, para não cobrir o carro). Celular: as duas
+     fotos em paisagem 3:2 (antes a foto era quadrada, 1:1), para não virar rolagem escura
+     longa. Desktop: duas faixas largas com o texto sobre a esquerda. -->
 <section class="mkc-section mkc-block mkc-full" id="acesso">
   <div class="mkc-inner">
     <div class="mkc-acesso">
-      <div class="mkc-acesso__media">
-        <img src="img/access-side.webp" alt="Homem abrindo a porta lateral da Canopy Armor" loading="lazy" width="1176" height="941" />
+      <div class="mkc-acesso__media mkc-acesso__media--car">
+        <div class="mkc-acesso__photo"><img src="img/access-side.webp" alt="Porta lateral aberta da Canopy Armor, com o vidro, a trava e a caçamba à mostra" loading="lazy" width="1176" height="941" /></div>
         <div class="mkc-acesso__over">
           <h2>Acesso total</h2>
           <p>Portas laterais e traseira trazem mais praticidade no uso diário, com uma abertura ampla e estrutura firme.</p>
         </div>
       </div>
+
       <ul class="mkc-acesso__feats">
         <li>
           <span class="mkc-acesso__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
@@ -519,6 +688,16 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
           <div><h3>Vidro temperado</h3><p>Com 5 mm de espessura, durabilidade garantida dos vidros com tecnologia Frits.</p></div>
         </li>
       </ul>
+
+      <div class="mkc-acesso__media mkc-acesso__media--tec">
+        <img src="img/product-side.webp" alt="Canopy Armor instalada em uma Ford Ranger" loading="lazy" width="1537" height="1023" />
+        <span class="mkc-acesso__stamp"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>Projeto MKK</span>
+        <div class="mkc-acesso__over">
+          <span class="mkc-acesso__eyebrow">Recursos técnicos</span>
+          <h2>O essencial já nasce integrado.</h2>
+          <p>Uma base robusta para usar agora e evoluir quando seus planos crescerem.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -597,46 +776,72 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
   </div>
 </section>
 
-<!-- Seção 5 -- "Itens adicionais" (rodada 2, 30/09). A FAIXA FINAL da peça de divulgação da
-     dona (referencia-2026-09-30/1.png: marca CANOPY ARMOR MKK + "Expanda sua organização com
-     os armários internos e Molle panel externo. Conheça os itens adicionais." + "Mais opções.
-     Mais eficiência. Do seu jeito!") e, logo abaixo, uma FILEIRA HORIZONTAL com scroll-snap
-     dos adicionais que a LP anterior já mostrava (Armário modular, Painel MOLLE externo,
-     Mesa deslizante) + a barraca/toldo, que a LP anterior cita no texto ("Adicione módulos,
-     barraca, toldo e equipamentos") e no FAQ. Textos dos cartões: os da LP anterior.
-     Os "Trilhos superiores" SAÍRAM daqui: a referência os coloca como item INCLUSO
-     ("Rack superior: equipado com trilhos no teto").
-     Celular: cartões de ~78% da largura, com o próximo aparecendo pela borda (dica de
-     rolagem). Desktop: 4 colunas, sem rolagem. id="acessorios" mantido. -->
+<!-- Seção 4b -- "Veja cada detalhe em funcionamento." (rodada 3, 01/10, pedido da Suellen).
+     Bloco de vídeo da PRIMEIRA versão da LP, agora com o review real no YouTube
+     (https://www.youtube.com/watch?v=8TmXlKF3IMc) no lugar do "link do review a inserir".
+     Padrão de vídeo do YouTube das LPs: miniatura com botão de play e o player só nasce no
+     CLIQUE (3-body.html, iniciarVideoReview), então a página não carrega o YouTube antes.
+     O <a> aponta para o próprio vídeo: sem JavaScript ele abre o YouTube em outra aba.
+     A miniatura é a foto setup-complete (a mesma que a primeira versão usava aqui).
+     Celular: título e texto, o vídeo em 16:9 e a lista de 3 pontos embaixo. -->
+<section class="mkc-section mkc-block mkc-full" id="video">
+  <div class="mkc-inner">
+    <div class="mkc-video">
+      <div class="mkc-video__copy">
+        <p class="mkc-eyebrow">Review completo</p>
+        <h2>Veja cada detalhe em funcionamento.</h2>
+        <p class="mkc-video__text">Aberturas, vedação, módulos e instalação explicados em um único vídeo.</p>
+      </div>
+      <div class="mkc-video__frame" data-mkc-yt="8TmXlKF3IMc">
+        <a class="mkc-video__poster" href="https://www.youtube.com/watch?v=8TmXlKF3IMc" target="_blank" rel="noopener" aria-label="Assistir ao review da Canopy Armor no YouTube">
+          <img src="img/setup-complete.webp" alt="Canopy Armor com estrutura de camping montada" loading="lazy" width="1750" height="1400" />
+          <span class="mkc-video__play"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg></span>
+        </a>
+      </div>
+      <ul class="mkc-video__list">
+        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Tour externo e interno</li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Demonstração dos acessórios</li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Processo de instalação</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Seção 5 -- "Módulos configuráveis" (rodada 3, 01/10, pedido da Suellen). Saiu a caixa
+     "Canopy Armor MKK" (escudo + slogan + "Conheça os itens adicionais") e o título "Itens
+     adicionais". Entra a abordagem da PRIMEIRA versão da LP (sobretítulo "Módulos
+     configuráveis", "Seu equipamento tem lugar certo." e o texto de apoio) com o selo
+     AMARELO "Organização inteligente" em destaque: a Suellen quer chamar atenção para o
+     valor, não para o preço de um extra. A frase "Mais opções. Mais eficiência. Do seu
+     jeito!" virou o apoio do selo. O carrossel continua, na ordem: Armário modular ->
+     Mesa deslizante -> Painel MOLLE externo -> Barraca e toldo (nomes e textos intactos).
+     Celular: cartões de ~78% da largura, com o próximo aparecendo pela borda. Desktop:
+     4 colunas, sem rolagem. id="acessorios" mantido. -->
 <section class="mkc-section mkc-block mkc-full" id="acessorios">
   <div class="mkc-inner">
-    <div class="mkc-strip">
-      <div class="mkc-strip__brand">
-        <span class="mkc-strip__logo">Canopy Armor <b>MKK</b></span>
-        <span class="mkc-strip__slogan">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
-          <span>Mais opções.<br>Mais eficiência.<br>Do seu jeito!</span>
-        </span>
-      </div>
-      <p class="mkc-strip__text">Expanda sua organização com os armários internos e Molle panel externo. <strong>Conheça os itens adicionais.</strong></p>
+    <div class="mkc-mods">
+      <span class="mkc-badge"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>Organização inteligente</span>
+      <p class="mkc-eyebrow">Módulos configuráveis</p>
+      <h2>Seu equipamento tem lugar certo.</h2>
+      <p class="mkc-mods__text">Crie compartimentos independentes, adicione uma mesa de trabalho e leve os itens essenciais de forma segura e previsível.</p>
+      <p class="mkc-mods__apoio">Mais opções. Mais eficiência. Do seu jeito!</p>
     </div>
 
     <div class="mkc-carousel-head">
-      <h2>Itens adicionais</h2>
       <span class="mkc-carousel-head__hint">Deslize <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg></span>
     </div>
-    <div class="mkc-carousel" tabindex="0" aria-label="Itens adicionais da Canopy Armor">
+    <div class="mkc-carousel" tabindex="0" aria-label="Módulos configuráveis da Canopy Armor">
       <article class="mkc-card">
         <div class="mkc-card__img"><img src="img/cabinet-organized.webp" alt="Armário modular com equipamentos organizados" loading="lazy" width="1750" height="1400" /></div>
         <div class="mkc-card__body"><span class="mkc-card__tag">Organização</span><h3>Armário modular</h3><p>Compartimentos independentes para ferramentas, equipamentos e itens de expedição.</p></div>
       </article>
       <article class="mkc-card">
-        <div class="mkc-card__img"><img src="img/molle-product.webp" alt="Painel MOLLE externo na lateral da Canopy" loading="lazy" width="1800" height="1200" /></div>
-        <div class="mkc-card__body"><span class="mkc-card__tag">Expansão</span><h3>Painel MOLLE externo</h3><p>Expanda a configuração e fixe pranchas, ferramentas e acessórios do seu jeito.</p></div>
-      </article>
-      <article class="mkc-card">
         <div class="mkc-card__img"><img src="img/sliding-table.webp" alt="Mesa deslizante aberta na traseira da Canopy" loading="lazy" width="1156" height="925" /></div>
         <div class="mkc-card__body"><span class="mkc-card__tag">Multifuncional</span><h3>Mesa deslizante</h3><p>Uma bancada de trabalho com acesso aos equipamentos e melhor aproveitamento do espaço.</p></div>
+      </article>
+      <article class="mkc-card">
+        <div class="mkc-card__img"><img src="img/molle-product.webp" alt="Painel MOLLE externo na lateral da Canopy" loading="lazy" width="1800" height="1200" /></div>
+        <div class="mkc-card__body"><span class="mkc-card__tag">Expansão</span><h3>Painel MOLLE externo</h3><p>Expanda a configuração e fixe pranchas, ferramentas e acessórios do seu jeito.</p></div>
       </article>
       <article class="mkc-card">
         <div class="mkc-card__img"><img src="img/setup-complete.webp" alt="Picape com Canopy, barraca de teto e toldo montados" loading="lazy" width="1750" height="1400" /></div>
@@ -652,18 +857,38 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
      2015-2026 = 2006-2026; Triton 2008-2017, 2017-2024 e 2024-2026 = 2008-2026; Ranger
      2013-2023 e 2023-2026 = 2013-2026) -- a cobertura é a mesma; o FAQ diz que há
      encaixes por geração e que a equipe confirma modelo e ano. Sem ícone de caminhão. -->
+<!-- 01/10 (Suellen/dono): 12 picapes da arte "Design exclusivo compativel com", gerações separadas, uma por linha. Grade de 2 colunas no celular (ver 1-css.css, seção 06).
+     Rodada 3 (01/10): o marcador COMPAT_GALERIA vira o "GIF" de fotos de clientes com a
+     canopy instalada (troca automática por crossfade em CSS/JS, proporção fixa 4:3,
+     prefers-reduced-motion = foto parada). As fotos vêm de compat-fotos.json, lido pelo
+     gerar_pacote.py; com a lista vazia o marcador some e a seção fica como era. Ver
+     MONTAGEM.md, "Fotos de clientes na Compatibilidade". -->
 <section class="mkc-section mkc-block mkc-full" id="compatibilidade">
   <div class="mkc-inner">
-    <div class="mkc-compat">
+    <div class="mkc-compat mkc-compat--gif">
       <p class="mkc-eyebrow">Compatibilidade</p>
       <h2>O encaixe certo para a sua picape.</h2>
       <ul class="mkc-pills">
-        <li class="mkc-pill"><strong>Toyota Hilux</strong><small>2006–2026</small></li>
-        <li class="mkc-pill"><strong>Mitsubishi Triton</strong><small>2008–2026</small></li>
-        <li class="mkc-pill"><strong>Volkswagen Amarok</strong><small>2012–2026</small></li>
-        <li class="mkc-pill"><strong>Nissan Frontier</strong><small>2017–2026</small></li>
-        <li class="mkc-pill"><strong>Ford Ranger</strong><small>2013–2026</small></li>
+        <li class="mkc-pill"><strong>Ford Maverick</strong><small>2022 a 2026</small></li>
+        <li class="mkc-pill"><strong>Fiat Titano</strong><small>2024 a 2026</small></li>
+        <li class="mkc-pill"><strong>GWM Poer</strong><small>2025 a 2026</small></li>
+        <li class="mkc-pill"><strong>Toyota Hilux</strong><small>2006 a 2015<br>2015 a 2026</small></li>
+        <li class="mkc-pill"><strong>Mitsubishi Triton</strong><small>2008 a 2017<br>2017 a 2024<br>2024 a 2026</small></li>
+        <li class="mkc-pill"><strong>Chevrolet S10</strong><small>2012 a 2026</small></li>
+        <li class="mkc-pill"><strong>Volkswagen Amarok</strong><small>2012 a 2026</small></li>
+        <li class="mkc-pill"><strong>Nissan Frontier</strong><small>2017 a 2026</small></li>
+        <li class="mkc-pill"><strong>Ram Dakota</strong><small>2026</small></li>
+        <li class="mkc-pill"><strong>Ford Ranger</strong><small>2013 a 2023<br>2023 a 2026</small></li>
+        <li class="mkc-pill"><strong>Ram Rampage</strong><small>2023 a 2026</small></li>
+        <li class="mkc-pill"><strong>Jeep Gladiator</strong><small>2022 a 2026</small></li>
       </ul>
+      <div class="mkc-gif" data-mkc-gif aria-label="Fotos de clientes com a Canopy Armor instalada">
+      <figure class="mkc-gif__slide mkc-on"><img src="img/compat/hilux.webp" alt="Canopy Armor instalada na picape de um cliente" width="900" height="600" /></figure>
+      <figure class="mkc-gif__slide"><img src="img/compat/triton.webp" alt="Canopy Armor instalada na picape de um cliente" loading="lazy" width="900" height="600" /></figure>
+      <figure class="mkc-gif__slide"><img src="img/compat/amarok.webp" alt="Canopy Armor instalada na picape de um cliente" loading="lazy" width="900" height="600" /></figure>
+      <figure class="mkc-gif__slide"><img src="img/compat/frontier.webp" alt="Canopy Armor instalada na picape de um cliente" loading="lazy" width="900" height="600" /></figure>
+      <figure class="mkc-gif__slide"><img src="img/compat/ranger.webp" alt="Canopy Armor instalada na picape de um cliente" loading="lazy" width="900" height="600" /></figure>
+      </div>
       <p class="mkc-compat__note">A equipe confirma cada medida antes do pedido. Não encontrou seu carro? Fale com a equipe para avaliar uma configuração.</p>
     </div>
   </div>
@@ -774,8 +999,94 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
   </div>
 </section>
 
+<!-- Seção 8b (bloco B, depois das Dúvidas) -- GARANTIA MKK (rodada 3, 01/10, pedido da
+     Suellen): mesma estrutura da Bagageiros (selo + "GARANTIA MKK!" sobre fundo preto),
+     adaptada ao padrão mkc- da Canopy. TEXTO: o "cartão Garantia MKK" da PRIMEIRA versão
+     da Canopy (não o da Bagageiros, que promete "mais do que 1 ano"): "Suporte de quem
+     projeta, fabrica e conhece o produto. Atendimento especializado antes, durante e
+     depois da instalação." O selo é o mesmo arquivo da Bagageiros. -->
+<section class="mkc-section mkc-garantia mkc-full" id="garantia">
+  <div class="mkc-garantia__inner">
+    <div class="mkc-garantia__selo"><img src="https://lp.mkkoffroad.com.br/wp-content/uploads/2024/06/8dae8d63-selo-garantia-mkk_108m0ba08m0b6000002000-1.png" alt="Selo Garantia MKK Off Road" loading="lazy" /></div>
+    <div class="mkc-garantia__text">
+      <h2 class="mkc-garantia__h1">Garantia</h2>
+      <h2 class="mkc-garantia__h2">MKK!</h2>
+      <p class="mkc-garantia__p">Suporte de quem projeta, fabrica e conhece o produto. Atendimento especializado antes, durante e depois da instalação.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Seção 8c (bloco B) -- Avaliações de clientes. Rodada 3 (01/10): mesma mecânica da
+     Bagageiros (cartões com avatar + nome + estrelas + texto, carrossel de arrastar com
+     bolinhas e autoplay -- 3-body.html, iniciarAvaliacoes). PROVA SOCIAL (06/11): os 2
+     depoimentos genéricos (Carlos Valdetaro e Wesley Nogueira, que falava de rack de teto)
+     saíram; entraram os 3 que a MKK juntou para a Canopy ("Prova social - LP Canopy", Drive):
+     Breno Bezinelli (Instagram), TSP 4x4 Expeditions (Google) e Jurânio (Instagram), na ordem
+     do documento, com o texto do documento (só "duvida" ganhou o acento). Cada cartão abre com
+     a foto da picape do cliente (4:3; a placa da Ranger do Breno vai desfocada no próprio
+     arquivo) e embaixo o avatar real com o logo da rede no canto. No celular é um cartão por
+     tela; a partir de 768 px os 3 cabem lado a lado e o carrossel para (sem bolinhas).
+     O botão aponta para o formulário e leva o preço ao lado. Continua no fundo preto da
+     Garantia. -->
+<section class="mkc-section mkc-depo mkc-full" id="avaliacoes">
+  <div class="mkc-depo__track" data-mkc-depo-track>
+    <article class="mkc-depo__slide">
+      <img class="mkc-depo__foto" src="img/depo-breno.webp" alt="Ford Ranger do Breno Bezinelli com a Canopy Armor numa estrada de terra" width="960" height="720" loading="lazy" />
+      <div class="mkc-depo__body">
+        <div class="mkc-depo__top">
+          <div class="mkc-depo__avatar-col">
+            <img class="mkc-depo__avatar" src="img/avatar-breno.webp" alt="" width="128" height="128" loading="lazy" />
+            <img class="mkc-depo__rede" src="img/logos/instagram.svg" alt="Avaliação no Instagram" width="24" height="24" loading="lazy" />
+          </div>
+          <div class="mkc-depo__who">
+            <div class="mkc-depo__name">Breno Bezinelli</div>
+            <img class="mkc-depo__stars" src="https://lp.mkkoffroad.com.br/wp-content/uploads/2024/06/196c77d6-stars.svg" alt="5 estrelas" loading="lazy" />
+          </div>
+        </div>
+        <p class="mkc-depo__text">O melhor upgrade pra Rangerzona foi a Canopy de caçamba da @mkkoffroad. Sem dúvida mudou o game e deixou nossa viagem muito mais fácil durante esses últimos 11 dias de Rally.</p>
+      </div>
+    </article>
+    <article class="mkc-depo__slide">
+      <img class="mkc-depo__foto" src="img/depo-tsp4x4.webp" alt="Mitsubishi L200 Triton da TSP 4x4 Expeditions com a Canopy Armor" width="960" height="720" loading="lazy" />
+      <div class="mkc-depo__body">
+        <div class="mkc-depo__top">
+          <div class="mkc-depo__avatar-col">
+            <img class="mkc-depo__avatar" src="img/avatar-tsp4x4.webp" alt="" width="128" height="128" loading="lazy" />
+            <img class="mkc-depo__rede" src="https://lp.mkkoffroad.com.br/wp-content/uploads/2024/06/fb82de06-google-g-logo_100w00w000000000000000.png" alt="Avaliação Google" width="24" height="24" loading="lazy" />
+          </div>
+          <div class="mkc-depo__who">
+            <div class="mkc-depo__name">TSP 4x4 Expeditions</div>
+            <img class="mkc-depo__stars" src="https://lp.mkkoffroad.com.br/wp-content/uploads/2024/06/196c77d6-stars.svg" alt="5 estrelas" loading="lazy" />
+          </div>
+        </div>
+        <p class="mkc-depo__text">A MKK de fato se destaca pelo profissionalismo e inovação em seus produtos. Aqui já usamos há um bom tempo os bagageiros e recentemente chegou a canopy. Acabamento impecável, realmente subimos o nível!</p>
+      </div>
+    </article>
+    <article class="mkc-depo__slide">
+      <img class="mkc-depo__foto" src="img/depo-juranio.webp" alt="Ford Ranger Storm do Jurânio com a Canopy Armor, a escada e a barraca de teto MKK" width="960" height="720" loading="lazy" />
+      <div class="mkc-depo__body">
+        <div class="mkc-depo__top">
+          <div class="mkc-depo__avatar-col">
+            <img class="mkc-depo__avatar" src="img/avatar-juranio.webp" alt="" width="128" height="128" loading="lazy" />
+            <img class="mkc-depo__rede" src="img/logos/instagram.svg" alt="Avaliação no Instagram" width="24" height="24" loading="lazy" />
+          </div>
+          <div class="mkc-depo__who">
+            <div class="mkc-depo__name">Jurânio</div>
+            <img class="mkc-depo__stars" src="https://lp.mkkoffroad.com.br/wp-content/uploads/2024/06/196c77d6-stars.svg" alt="5 estrelas" loading="lazy" />
+          </div>
+        </div>
+        <p class="mkc-depo__text">Conheci a MKK comprando o bagageiro pro meu antigo Jimny, depois disso foi barraca, toldo… sempre com qualidade acima do mercado. Agora mudamos de carro, e chegou a vez da canopy para equipar e deixar tudo organizado por aqui!</p>
+      </div>
+    </article>
+  </div>
+  <div class="mkc-depo__dots" data-mkc-depo-dots></div>
+  <div class="mkc-depo__cta">
+    <div class="mkc-cta-preco"><a class="mkc-btn mkc-btn--primary" href="#formulario">Pedir proposta</a><p class="mkc-preco mkc-preco--onDark">A partir de <strong>R$ 17.800</strong></p></div>
+  </div>
+</section>
+
 <!-- Seção 9 (bloco B) -- Rodapé MÍNIMO (rodada 2, 30/09): logo + a frase institucional da
-     seção "Sobre" da LP anterior (a seção inteira saiu) + endereço e copyright de hoje.
+     seção "Sobre" da LP anterior (a seção inteira saiu) + endereço (atualizado em 01/10) e copyright de hoje.
      Sem menu: o DOM de produção não tem menu de rodapé. -->
 <section class="mkc-section mkc-footer mkc-full">
   <div class="mkc-inner mkc-footer__inner">
@@ -785,7 +1096,7 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
     </a>
     <div class="mkc-footer__text">
       <p class="mkc-footer__p mkc-footer__lead">Mais de 10 anos criando equipamentos para quem escolhe outro caminho.</p>
-      <p class="mkc-footer__p">Rod. Poços de Caldas, 970 &#8211; Distrito Industrial, Itajubá &#8211; MG</p>
+      <p class="mkc-footer__p">Avenida Poços de Caldas, 970 &#8211; Itajubá &#8211; MG &#8211; CEP 37504-126</p>
       <p class="mkc-footer__p">&copy; 2026 MKK Off Road. Todos os direitos reservados.</p>
     </div>
   </div>
@@ -800,13 +1111,16 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
    comentário de HTML -- e por isso NUNCA se deve digitar a sequência que fecha este
    tipo de comentário no meio do texto explicativo (bug real na Bagageiros, ver
    PLAYBOOK.md seção 6).
-   Cobre só o ajuste dos rótulos/placeholders do Formulário nativo do RD -- não tem
-   JS de vídeo (a LP não tem vídeo desde a rodada 2), de acordeão do FAQ (usa
+   Cobre: (1) o ajuste dos rótulos/placeholders do Formulário nativo do RD e os campos
+   escondidos de UTM; (2) rodada 3 (01/10): o vídeo de review do YouTube (o player só nasce
+   no clique), a troca automática de fotos de clientes da Compatibilidade (só existe se
+   houver fotos) e o carrossel de avaliações. Não tem JS de acordeão do FAQ (usa
    details/summary nativos do HTML5, com o atributo "name" compartilhado garantindo
-   que só um fique aberto por vez nos navegadores atuais) nem de carrossel (a fileira
-   de itens adicionais é overflow-x com scroll-snap, só CSS).
+   que só um fique aberto por vez nos navegadores atuais) nem de carrossel dos itens
+   adicionais (overflow-x com scroll-snap, só CSS).
    Se o JavaScript falhar por qualquer motivo, a página continua legível: o
-   formulário mostra os rótulos genéricos do RD. */
+   formulário mostra os rótulos genéricos do RD, o vídeo vira um link para o YouTube, a
+   primeira foto de cliente fica parada e as avaliações rolam com o dedo. */
 (function () {
   "use strict";
 
@@ -889,12 +1203,182 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
     }
   }
 
+  // Campos escondidos de UTM (30/09/2026). O RD guarda a origem só para a Análise
+  // de Canais e a segmentação, não em campo do lead (confirmado pelo suporte do RD).
+  // A LP antiga do WordPress mandava a UTM em campo, e é isso que a equipe consulta.
+  // Aqui a UTM do endereço vai para 5 campos escondidos, com os identificadores dos
+  // campos personalizados da conta: cf_utm_source, cf_utm_medium, cf_utm_campaign,
+  // cf_utm_content e cf_utm_term. Sem UTM no endereço, usa a da visita atual que o
+  // próprio RD guardou no cookie __trf.src (current_session). Não sobrescreve valor
+  // já preenchido e não cria campo repetido; sem UTM nenhuma, não faz nada.
+  function camposUtm() {
+    var form = document.getElementById("conversion-form");
+    if (!form) { return; }
+    var CHAVES = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+
+    function lerQuery(texto) {
+      var achou = {};
+      String(texto || "").replace(/^\?/, "").split("&").forEach(function (par) {
+        var i = par.indexOf("=");
+        if (i < 1) { return; }
+        var chave = par.slice(0, i).toLowerCase();
+        if (CHAVES.indexOf(chave) === -1) { return; }
+        var valor = par.slice(i + 1);
+        try { valor = decodeURIComponent(valor.replace(/\+/g, " ")); } catch (e) { valor = par.slice(i + 1); }
+        if (valor) { achou[chave] = valor; }
+      });
+      return achou;
+    }
+
+    function daVisitaAtual() {
+      var m = document.cookie.match(/(?:^|;\s*)__trf\.src=([^;]+)/);
+      if (!m) { return {}; }
+      try {
+        var s = decodeURIComponent(m[1]);
+        if (s.indexOf("encoded_") === 0) { s = window.atob(s.slice(8)); }
+        var j = JSON.parse(s);
+        return lerQuery(j && j.current_session && j.current_session.value);
+      } catch (e) {
+        return {};
+      }
+    }
+
+    var utm = lerQuery(window.location.search);
+    if (!Object.keys(utm).length) { utm = daVisitaAtual(); }
+    CHAVES.forEach(function (chave) {
+      if (!utm[chave]) { return; }
+      var nome = "cf_" + chave;
+      var campo = form.querySelector('input[name="' + nome + '"]');
+      if (!campo) {
+        campo = document.createElement("input");
+        campo.type = "hidden";
+        campo.name = nome;
+        form.appendChild(campo);
+      }
+      if (!campo.value) { campo.value = utm[chave].slice(0, 255); }
+    });
+  }
+
+  /* Vídeo de review (rodada 3): a miniatura é um link para o YouTube; no clique o
+   * link é trocado pelo player incorporado, já tocando. Sem JavaScript, o link abre o
+   * YouTube em outra aba. */
+  function iniciarVideoReview() {
+    var quadro = document.querySelector("[data-mkc-yt]");
+    if (!quadro) { return; }
+    var id = quadro.getAttribute("data-mkc-yt");
+    var poster = quadro.querySelector(".mkc-video__poster");
+    if (!id || !poster) { return; }
+    poster.addEventListener("click", function (ev) {
+      ev.preventDefault();
+      var iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube.com/embed/" + encodeURIComponent(id) + "?autoplay=1&rel=0&modestbranding=1";
+      iframe.title = "Review da Canopy Armor";
+      iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture");
+      iframe.setAttribute("allowfullscreen", "");
+      quadro.replaceChild(iframe, poster);
+    });
+  }
+
+  /* "GIF" de fotos de clientes na Compatibilidade (rodada 3): troca por crossfade (a
+   * transição de opacity é do CSS). Com 0 ou 1 foto não faz nada; com
+   * prefers-reduced-motion fica na primeira foto, parada. Pausa com a aba escondida. */
+  function iniciarGifCompat() {
+    var raiz = document.querySelector("[data-mkc-gif]");
+    if (!raiz) { return; }
+    var slides = raiz.querySelectorAll(".mkc-gif__slide");
+    if (slides.length < 2) { return; }
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { return; }
+    var atual = 0;
+    window.setInterval(function () {
+      if (document.hidden) { return; }
+      slides[atual].classList.remove("mkc-on");
+      atual = (atual + 1) % slides.length;
+      slides[atual].classList.add("mkc-on");
+    }, 3200);
+  }
+
+  /* Avaliações (rodada 3): mesma mecânica da Bagageiros. Carrossel de arrastar com
+   * bolinhas e passagem automática a cada 4 s; quando todos os cartões cabem na tela
+   * (desktop com 2 avaliações) não há bolinhas nem passagem. */
+  function larguraSlide(track) {
+    var primeiro = track.firstElementChild;
+    if (!primeiro) { return 0; }
+    var estilo = window.getComputedStyle(track);
+    var gap = parseFloat(estilo.columnGap || estilo.gap || "0") || 0;
+    return primeiro.getBoundingClientRect().width + gap;
+  }
+  function iniciarAvaliacoes() {
+    var track = document.querySelector("[data-mkc-depo-track]");
+    var dotsBox = document.querySelector("[data-mkc-depo-dots]");
+    if (!track || !dotsBox) { return; }
+    var slides = track.children;
+    var dots = [];
+    var timer = null;
+
+    function cabeTudo() { return track.scrollWidth <= track.clientWidth + 2; }
+    function montarDots() {
+      dotsBox.innerHTML = "";
+      dots = [];
+      if (cabeTudo()) { return; }
+      for (var i = 0; i < slides.length; i++) {
+        (function (indice) {
+          var dot = document.createElement("button");
+          dot.type = "button";
+          dot.className = "mkc-depo__dot" + (indice === 0 ? " mkc-is-active" : "");
+          dot.setAttribute("aria-label", "Avaliação " + (indice + 1));
+          dot.addEventListener("click", function () {
+            track.scrollTo({ left: larguraSlide(track) * indice, behavior: "smooth" });
+          });
+          dotsBox.appendChild(dot);
+          dots.push(dot);
+        })(i);
+      }
+    }
+    function atualizarDot() {
+      var passo = larguraSlide(track) || 1;
+      var indice = Math.round(track.scrollLeft / passo);
+      dots.forEach(function (d, i) { d.classList.toggle("mkc-is-active", i === indice); });
+    }
+    function proximo() {
+      if (cabeTudo() || document.hidden) { return; }
+      var passo = larguraSlide(track);
+      var fim = track.scrollLeft + track.clientWidth >= track.scrollWidth - passo * 0.5;
+      track.scrollTo({ left: fim ? 0 : track.scrollLeft + passo, behavior: "smooth" });
+    }
+    function parar() { if (timer) { window.clearInterval(timer); timer = null; } }
+    function iniciar() {
+      if (timer || (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)) { return; }
+      timer = window.setInterval(proximo, 4000);
+    }
+
+    montarDots();
+    track.addEventListener("scroll", function () {
+      window.clearTimeout(track._mkcT);
+      track._mkcT = window.setTimeout(atualizarDot, 80);
+    }, { passive: true });
+    track.addEventListener("mouseenter", parar);
+    track.addEventListener("mouseleave", iniciar);
+    track.addEventListener("touchstart", parar, { passive: true });
+    track.addEventListener("touchend", function () { window.setTimeout(iniciar, 4000); }, { passive: true });
+    window.addEventListener("resize", montarDots);
+    iniciar();
+  }
+
   onReady(function () {
     ajustarFormularioRD();
     // o Formulário nativo do RD pode montar um pouco depois do resto da página
     // (telefone internacional, conta anti-robô) -- tenta de novo uma vez;
     // ajustarFormularioRD não duplica nada, só reescreve texto.
     window.setTimeout(ajustarFormularioRD, 1200);
+    // UTM: agora, de novo junto com o formulário e quando a pessoa começa a preencher
+    // (o cookie do RD pode nascer depois deste script numa primeira visita sem UTM)
+    iniciarVideoReview();
+    iniciarGifCompat();
+    iniciarAvaliacoes();
+    camposUtm();
+    window.setTimeout(camposUtm, 1200);
+    var formUtm = document.getElementById("conversion-form");
+    if (formUtm) { formUtm.addEventListener("focusin", camposUtm); }
   });
 })();
 
