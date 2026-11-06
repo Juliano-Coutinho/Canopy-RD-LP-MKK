@@ -102,6 +102,10 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
 }
 .mkc-btn:hover, .mkc-btn:focus { transform: scale(1.03); }
 .mkc-btn--primary { background: var(--mkc-accent); color: #10110f; box-shadow: 0 10px 30px rgba(255,178,67,.25); }
+/* texto do botão numa caixa própria: dentro do flex do botão um <br> solto não quebra linha.
+   .mkc-so-cel = quebra só no celular (06/11: "Quero equipar / minha picape"). */
+.mkc-btn__txt { text-align: center; line-height: 1.15; }
+@media (min-width: 768px) { .mkc-so-cel { display: none; } }
 
 /* ---------- preço ao lado do botão (06/11, pedido do dono; mesmo molde da Barracas) ----------
    Botão + "A partir de R$ 17.800" lado a lado. Celular: a dupla ocupa a largura toda e o
@@ -145,7 +149,6 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
 }
 .mkc-header__brand { display: flex; align-items: center; gap: 10px; min-height: 44px; }
 .mkc-header__logo { width: 28px; flex: 0 0 auto; }
-.mkc-header__brandtext { font-family: var(--mkc-display); font-size: 1.15rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: #fff; }
 .mkc-header__cta {
   display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 16px;
   border: 1px solid var(--mkc-accent); border-radius: 10px; color: #fff; flex: 0 0 auto;
@@ -602,7 +605,6 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
 .mkc-footer__inner { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
 .mkc-footer__brand { display: flex; align-items: center; gap: 10px; min-height: 44px; }
 .mkc-footer__logo { width: 26px; }
-.mkc-footer__brandtext { font-family: var(--mkc-display); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; font-size: 1rem; color: #fff; }
 .mkc-footer__text { display: flex; flex-direction: column; gap: 3px; }
 .mkc-footer__p { color: #b9bbbf; font-size: .76rem; line-height: 1.45; }
 .mkc-footer__lead { color: #fff; font-weight: 600; font-size: .82rem; margin-bottom: 4px; }
@@ -618,12 +620,12 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
      ser transparente/absoluto sobre o Hero: agora é uma barra preta NORMAL, no fluxo, da
      mesma cor do Hero (assim o RD não precisa "deixar flutuar" nada) e com a faixa âmbar
      no topo, como na peça de divulgação da dona (referencia-2026-09-30/1.png). Sem menu
-     de âncoras: a página é curta e o celular não tem onde pôr cinco links. -->
+     de âncoras: a página é curta e o celular não tem onde pôr cinco links. 06/11: saiu o
+     texto "Off Road" ao lado do logo (retorno da dona: já está no logotipo); o mesmo no rodapé. -->
 <section class="mkc-section mkc-header mkc-full">
   <div class="mkc-header__inner">
     <a href="#topo" class="mkc-header__brand">
       <img class="mkc-header__logo" src="img/logos/logo-mkk.svg" alt="MKK Off Road" />
-      <span class="mkc-header__brandtext">Off Road</span>
     </a>
     <a class="mkc-header__cta" href="#formulario">Pedir proposta</a>
   </div>
@@ -638,16 +640,18 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
      nos blocos de Acesso total e Itens inclusos). A foto é a MESMA foto real hero-canopy
      (a peça é um recorte dela). No celular a picape fica no meio da coluna e o botão
      embaixo; a partir de 768 px a foto vira o fundo. 06/11: "A partir de R$ 17.800" ao
-     lado do botão (pedido do dono, mesmo molde dos R$ 15.000 da Barracas). -->
+     lado do botão (pedido do dono, mesmo molde dos R$ 15.000 da Barracas). Retorno da dona,
+     06/11: no celular o texto do botão quebra em "Quero equipar / minha picape" (o <br> só
+     vale abaixo de 768 px), e a foto é o original em alta (Canopy_1.jpg, 2400 px). -->
 <section class="mkc-section mkc-hero mkc-full" id="topo">
   <div class="mkc-hero__head">
     <h1 class="mkc-hero__title">Canopy<br>Armor</h1>
     <p class="mkc-hero__series"><span>Performance Series</span></p>
   </div>
-  <img class="mkc-hero__photo" src="img/hero-canopy.webp" alt="Picape preta com a Canopy Armor instalada" width="2400" height="1800" />
+  <img class="mkc-hero__photo" src="img/hero-canopy.webp" alt="Picape preta com a Canopy Armor instalada" width="2400" height="1516" />
   <div class="mkc-hero__foot">
     <p class="mkc-hero__tag">Feita para proteger. <em>Criada para explorar.</em></p>
-    <div class="mkc-cta-preco"><a class="mkc-btn mkc-btn--primary" href="#formulario">Quero equipar minha picape
+    <div class="mkc-cta-preco"><a class="mkc-btn mkc-btn--primary" href="#formulario"><span class="mkc-btn__txt">Quero equipar<br class="mkc-so-cel"> minha picape</span>
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
     </a><p class="mkc-preco mkc-preco--onDark">A partir de <strong>R$ 17.800</strong></p></div>
   </div>
@@ -662,7 +666,10 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
      a metade direita da foto, onde estão a porta, o vidro e a caçamba; no celular o texto
      fica num painel preto ABAIXO da foto, para não cobrir o carro). Celular: as duas
      fotos em paisagem 3:2 (antes a foto era quadrada, 1:1), para não virar rolagem escura
-     longa. Desktop: duas faixas largas com o texto sobre a esquerda. -->
+     longa. Desktop: duas faixas largas com o texto sobre a esquerda.
+     06/11 (retorno da dona): o bloco (3) virou "Feita para durar / Estrutura em alumínio 2mm"
+     com o texto novo dela; a foto 1 (access-side) foi trocada pelo arquivo sem perda que ela
+     mandou ("Acesso lateral.png", mesma foto e mesmo enquadramento). -->
 <section class="mkc-section mkc-block mkc-full" id="acesso">
   <div class="mkc-inner">
     <div class="mkc-acesso">
@@ -693,9 +700,9 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
         <img src="img/product-side.webp" alt="Canopy Armor instalada em uma Ford Ranger" loading="lazy" width="1537" height="1023" />
         <span class="mkc-acesso__stamp"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>Projeto MKK</span>
         <div class="mkc-acesso__over">
-          <span class="mkc-acesso__eyebrow">Recursos técnicos</span>
-          <h2>O essencial já nasce integrado.</h2>
-          <p>Uma base robusta para usar agora e evoluir quando seus planos crescerem.</p>
+          <span class="mkc-acesso__eyebrow">Feita para durar</span>
+          <h2>Estrutura em alumínio 2mm</h2>
+          <p>Uma base robusta construída para oferecer máxima resistência e longa vida útil.</p>
         </div>
       </div>
     </div>
@@ -789,7 +796,7 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
     <div class="mkc-video">
       <div class="mkc-video__copy">
         <p class="mkc-eyebrow">Review completo</p>
-        <h2>Veja cada detalhe em funcionamento.</h2>
+        <h2>Veja cada detalhe em funcionamento</h2>
         <p class="mkc-video__text">Aberturas, vedação, módulos e instalação explicados em um único vídeo.</p>
       </div>
       <div class="mkc-video__frame" data-mkc-yt="8TmXlKF3IMc">
@@ -821,8 +828,8 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
   <div class="mkc-inner">
     <div class="mkc-mods">
       <span class="mkc-badge"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>Organização inteligente</span>
-      <p class="mkc-eyebrow">Módulos configuráveis</p>
-      <h2>Seu equipamento tem lugar certo.</h2>
+      <p class="mkc-eyebrow">Dê um UPGRADE com módulos configuráveis</p>
+      <h2>Seu equipamento tem lugar certo</h2>
       <p class="mkc-mods__text">Crie compartimentos independentes, adicione uma mesa de trabalho e leve os itens essenciais de forma segura e previsível.</p>
       <p class="mkc-mods__apoio">Mais opções. Mais eficiência. Do seu jeito!</p>
     </div>
@@ -845,7 +852,7 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
       </article>
       <article class="mkc-card">
         <div class="mkc-card__img"><img src="img/setup-complete.webp" alt="Picape com Canopy, barraca de teto e toldo montados" loading="lazy" width="1750" height="1400" /></div>
-        <div class="mkc-card__body"><span class="mkc-card__tag">Expedição</span><h3>Barraca e toldo</h3><p>Base de acampamento com toldo, abrigo e acesso organizado.</p></div>
+        <div class="mkc-card__body"><span class="mkc-card__tag">Expedição</span><h3>Barraca e toldo</h3><p>Base de acampamento completa, instalação compatível com toldo, barraca e demais acessórios MKK.</p></div>
       </article>
     </div>
   </div>
@@ -867,7 +874,7 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
   <div class="mkc-inner">
     <div class="mkc-compat mkc-compat--gif">
       <p class="mkc-eyebrow">Compatibilidade</p>
-      <h2>O encaixe certo para a sua picape.</h2>
+      <h2>O encaixe certo para a sua picape</h2>
       <ul class="mkc-pills">
         <li class="mkc-pill"><strong>Ford Maverick</strong><small>2022 a 2026</small></li>
         <li class="mkc-pill"><strong>Fiat Titano</strong><small>2024 a 2026</small></li>
@@ -881,6 +888,7 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
         <li class="mkc-pill"><strong>Ford Ranger</strong><small>2013 a 2023<br>2023 a 2026</small></li>
         <li class="mkc-pill"><strong>Ram Rampage</strong><small>2023 a 2026</small></li>
         <li class="mkc-pill"><strong>Jeep Gladiator</strong><small>2022 a 2026</small></li>
+        <li class="mkc-pill"><strong>Ram 1500</strong></li>
       </ul>
       <div class="mkc-gif" data-mkc-gif aria-label="Fotos de clientes com a Canopy Armor instalada">
       <figure class="mkc-gif__slide mkc-on"><img src="img/compat/hilux.webp" alt="Canopy Armor instalada na picape de um cliente" width="900" height="600" /></figure>
@@ -902,7 +910,7 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
 <section class="mkc-section mkc-lead-topo mkc-full" id="formulario">
   <div class="mkc-inner">
     <p class="mkc-eyebrow">Solicite sua proposta</p>
-    <h2>Sua picape pode ir muito além.</h2>
+    <h2>Sua picape pode ir muito além</h2>
     <p class="mkc-lead__text">Conte como você pretende usar a Canopy Armor. A equipe MKK confirma a compatibilidade e prepara uma proposta personalizada.</p>
     <ul class="mkc-lead__chips">
       <li>Atendimento consultivo</li>
@@ -981,7 +989,7 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
         <summary><span>Os armários e a mesa já acompanham a Canopy?</span>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
         </summary>
-        <p>A Canopy já vem com o painel Molle interno nas portas laterais. Armários internos, mesa deslizante, painel Molle externo e outros acessórios são opcionais, permitindo montar a configuração ideal para seu uso.</p>
+        <p>Não, os acessórios são opcionais e permitem personalizar sua Canopy de acordo com a sua necessidade. A Canopy já vem equipada com molle panel interno nas portas laterais. Armários internos, mesa deslizante, molle panel externo e outros acessórios são UPGRADES disponíveis para ampliar a funcionalidade e aproveitar ainda mais o espaço.</p>
       </details>
       <details class="mkc-faq__item" name="mkc-faq">
         <summary><span>Como funciona o sistema Dust Out?</span>
@@ -1087,12 +1095,12 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
 
 <!-- Seção 9 (bloco B) -- Rodapé MÍNIMO (rodada 2, 30/09): logo + a frase institucional da
      seção "Sobre" da LP anterior (a seção inteira saiu) + endereço (atualizado em 01/10) e copyright de hoje.
-     Sem menu: o DOM de produção não tem menu de rodapé. -->
+     Sem menu: o DOM de produção não tem menu de rodapé. 06/11: só o logo, sem o texto
+     "Off Road" ao lado (retorno da dona, o mesmo do header). -->
 <section class="mkc-section mkc-footer mkc-full">
   <div class="mkc-inner mkc-footer__inner">
     <a href="#topo" class="mkc-footer__brand">
       <img class="mkc-footer__logo" src="img/logos/logo-mkk.svg" alt="MKK Off Road" loading="lazy" />
-      <span class="mkc-footer__brandtext">Off Road</span>
     </a>
     <div class="mkc-footer__text">
       <p class="mkc-footer__p mkc-footer__lead">Mais de 10 anos criando equipamentos para quem escolhe outro caminho.</p>
