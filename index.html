@@ -194,7 +194,7 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
   .mkc-hero__head { padding-top: 0; }
   .mkc-hero__photo {
     position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; margin: 0;
-    object-position: 50% 55%;
+    object-position: 50% 60%;   /* 06/11: foto nova; 60% não corta os pneus em 1856 px */
     -webkit-mask-image: none; mask-image: none;
   }
   .mkc-hero::after {
@@ -214,17 +214,19 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
    03. ACESSO TOTAL em SANDUICHE (rodada 3, 01/10) -- um cartao branco: foto do Acesso
    total (titulo e texto por cima) -> 3 destaques com icone -> foto "O essencial ja nasce
    integrado." (sobretitulo, texto e selo "Projeto MKK"). Celular: as duas fotos em
-   paisagem 3:2 (antes a foto era quadrada). A foto 1 usa --car: a imagem e ampliada e
-   ancorada a direita, para mostrar a porta, o vidro e a cacamba e deixar a pessoa
-   (que esta na metade esquerda da foto) fora do quadro.
+   paisagem 3:2 (antes a foto era quadrada).
+   06/11 (o dono: "algumas fotos ficaram cortadas", no desktop e no celular): a foto 1 deixou
+   de ser ampliada 152% e ancorada a direita (mostrava 36% dela) e aparece INTEIRA, em 5:4,
+   a proporcao do arquivo; no desktop as duas fotos sairam das faixas de 400 px (mostravam
+   40% e 48%) e cada bloco virou meio a meio, texto num painel preto e foto inteira, em
+   zigue-zague (Acesso: texto | foto; Aluminio: foto | texto).
    ========================================================================= */
 .mkc-acesso { background: var(--mkc-white); border-radius: var(--mkc-r); overflow: hidden; }
 .mkc-acesso__media { position: relative; aspect-ratio: 3 / 2; background: #111; overflow: hidden; }
 .mkc-acesso__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.mkc-acesso__media--car img { inset: auto; right: 0; top: -63%; width: 152%; max-width: none; height: auto; }
 /* foto 1: o texto NAO fica sobre a foto no celular (cobria o carro); vai num painel preto logo abaixo */
 .mkc-acesso__media--car { aspect-ratio: auto; background: #0a0a0b; }
-.mkc-acesso__media--car .mkc-acesso__photo { position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: #111; }
+.mkc-acesso__media--car .mkc-acesso__photo { position: relative; aspect-ratio: 5 / 4; overflow: hidden; background: #111; }
 .mkc-acesso__media--car .mkc-acesso__over { position: static; padding: 14px 16px 16px; background: #0a0a0b; }
 .mkc-acesso__media--tec img { object-position: 50% 30%; }
 .mkc-acesso__over {
@@ -253,20 +255,22 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
 .mkc-acesso__feats h3 { font-family: var(--mkc-body); font-size: .8rem; letter-spacing: .02em; font-weight: 800; color: var(--mkc-text); margin: 1px 0 3px; }
 .mkc-acesso__feats p { font-size: .84rem; line-height: 1.4; color: #4a4d52; }
 @media (min-width: 768px) {
-  .mkc-acesso__media { aspect-ratio: auto; height: clamp(300px, 29vw, 400px); }
-  .mkc-acesso__media--car { aspect-ratio: auto; height: clamp(300px, 29vw, 400px); }
-  .mkc-acesso__media--car .mkc-acesso__photo { position: absolute; inset: 0; aspect-ratio: auto; }
-  .mkc-acesso__media--car img { inset: 0; right: auto; top: 0; width: 100%; height: 100%; object-position: 50% 66%; }
-  .mkc-acesso__media--car .mkc-acesso__over { position: absolute; background: linear-gradient(to right, rgba(0,0,0,.82) 0, rgba(0,0,0,.6) 62%, rgba(0,0,0,0) 100%); }
-  .mkc-acesso__media--tec img { object-position: 50% 38%; }
+  /* meio a meio: painel preto de texto + foto inteira na proporção dela (sem faixa baixa) */
+  .mkc-acesso__media { aspect-ratio: auto; display: grid; background: #0a0a0b; }
+  .mkc-acesso__media--car { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
+  .mkc-acesso__media--car .mkc-acesso__photo { order: 2; aspect-ratio: 5 / 4; }
+  .mkc-acesso__media--tec { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); }
+  .mkc-acesso__media--tec > img { position: static; aspect-ratio: 3 / 2; height: auto; }
   .mkc-acesso__over {
-    top: 0; right: auto; width: 54%; display: flex; flex-direction: column; justify-content: center; padding: 34px 34px 34px 40px;
-    background: linear-gradient(to right, rgba(0,0,0,.82) 0, rgba(0,0,0,.6) 62%, rgba(0,0,0,0) 100%);
+    position: static; display: flex; flex-direction: column; justify-content: center;
+    padding: 34px 40px; background: #0a0a0b;
   }
+  .mkc-acesso__media--car .mkc-acesso__over { padding: 34px 40px; background: #0a0a0b; }
   .mkc-acesso__over h2 { font-size: 2.9rem; }
   .mkc-acesso__over p { font-size: 1.02rem; max-width: 40ch; }
   .mkc-acesso__eyebrow { font-size: .9rem; margin-bottom: 8px; }
-  .mkc-acesso__stamp { top: 18px; right: 18px; font-size: .8rem; padding: 7px 14px 7px 11px; }
+  /* no desktop a foto do alumínio fica à esquerda: o selo vai para o canto dela */
+  .mkc-acesso__stamp { top: 18px; right: auto; left: 18px; font-size: .8rem; padding: 7px 14px 7px 11px; }
   .mkc-acesso__stamp svg { width: 18px; height: 18px; }
   .mkc-acesso__feats { grid-template-columns: repeat(3, 1fr); gap: 28px; padding: 26px 34px; }
   .mkc-acesso__feats li { padding: 0; gap: 14px; }
@@ -1043,7 +1047,7 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
       <div class="mkc-depo__body">
         <div class="mkc-depo__top">
           <div class="mkc-depo__avatar-col">
-            <img class="mkc-depo__avatar" src="img/avatar-breno.webp" alt="" width="128" height="128" loading="lazy" />
+            <img class="mkc-depo__avatar" src="img/avatar-breno.webp" alt="" width="192" height="192" loading="lazy" />
             <img class="mkc-depo__rede" src="img/logos/instagram.svg" alt="Avaliação no Instagram" width="24" height="24" loading="lazy" />
           </div>
           <div class="mkc-depo__who">
@@ -1059,7 +1063,7 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
       <div class="mkc-depo__body">
         <div class="mkc-depo__top">
           <div class="mkc-depo__avatar-col">
-            <img class="mkc-depo__avatar" src="img/avatar-tsp4x4.webp" alt="" width="128" height="128" loading="lazy" />
+            <img class="mkc-depo__avatar" src="img/avatar-tsp4x4.webp" alt="" width="192" height="192" loading="lazy" />
             <img class="mkc-depo__rede" src="https://lp.mkkoffroad.com.br/wp-content/uploads/2024/06/fb82de06-google-g-logo_100w00w000000000000000.png" alt="Avaliação Google" width="24" height="24" loading="lazy" />
           </div>
           <div class="mkc-depo__who">
@@ -1075,7 +1079,7 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
       <div class="mkc-depo__body">
         <div class="mkc-depo__top">
           <div class="mkc-depo__avatar-col">
-            <img class="mkc-depo__avatar" src="img/avatar-juranio.webp" alt="" width="128" height="128" loading="lazy" />
+            <img class="mkc-depo__avatar" src="img/avatar-juranio.webp" alt="" width="192" height="192" loading="lazy" />
             <img class="mkc-depo__rede" src="img/logos/instagram.svg" alt="Avaliação no Instagram" width="24" height="24" loading="lazy" />
           </div>
           <div class="mkc-depo__who">
