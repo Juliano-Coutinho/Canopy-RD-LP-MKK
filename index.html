@@ -623,6 +623,8 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
 .mkc-footer__text { display: flex; flex-direction: column; gap: 3px; }
 .mkc-footer__p { color: #b9bbbf; font-size: .76rem; line-height: 1.45; }
 .mkc-footer__lead { color: #fff; font-weight: 600; font-size: .82rem; margin-bottom: 4px; }
+.mkc-footer__lead em { font-style: italic; }
+.mkc-nowrap { white-space: nowrap; }
 @media (min-width: 768px) {
   .mkc-footer__inner { flex-direction: row; align-items: center; justify-content: space-between; gap: 30px; }
 }
@@ -1116,15 +1118,17 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
 <!-- Seção 9 (bloco B) -- Rodapé MÍNIMO (rodada 2, 30/09): logo + a frase institucional da
      seção "Sobre" da LP anterior (a seção inteira saiu) + endereço (atualizado em 01/10) e copyright de hoje.
      Sem menu: o DOM de produção não tem menu de rodapé. 06/11: só o logo, sem o texto
-     "Off Road" ao lado (retorno da dona, o mesmo do header). -->
+     "Off Road" ao lado (retorno da dona, o mesmo do header). A frase "Mais de 10 anos criando
+     equipamentos…" virou o slogan da marca, "Faça seu caminho.", em itálico (a dona), e o CEP
+     não quebra mais no hífen. -->
 <section class="mkc-section mkc-footer mkc-full">
   <div class="mkc-inner mkc-footer__inner">
     <a href="#topo" class="mkc-footer__brand">
       <img class="mkc-footer__logo" src="img/logos/logo-mkk.svg" alt="MKK Off Road" loading="lazy" />
     </a>
     <div class="mkc-footer__text">
-      <p class="mkc-footer__p mkc-footer__lead">Mais de 10 anos criando equipamentos para quem escolhe outro caminho.</p>
-      <p class="mkc-footer__p">Avenida Poços de Caldas, 970 &#8211; Itajubá &#8211; MG &#8211; CEP 37504-126</p>
+      <p class="mkc-footer__p mkc-footer__lead"><em>Faça seu caminho.</em></p>
+      <p class="mkc-footer__p">Avenida Poços de Caldas, 970 &#8211; Itajubá &#8211; MG &#8211; <span class="mkc-nowrap">CEP 37504-126</span></p>
       <p class="mkc-footer__p">&copy; 2026 MKK Off Road. Todos os direitos reservados.</p>
     </div>
   </div>
