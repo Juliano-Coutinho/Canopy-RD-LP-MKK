@@ -404,10 +404,11 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
 .mkc-pill strong { font-size: .88rem; font-weight: 700; color: var(--mkc-text); line-height: 1.25; }
 .mkc-pill small { font-size: .74rem; color: var(--mkc-muted); line-height: 1.35; }
 /* 06/11 (a dona: sem caixa cinza em branco): o texto fica centrado na altura da caixa, e a
-   diferença entre as alturas de um par vira respiro, não sobra embaixo. A pílula que sobra
-   sozinha na última linha (13 picapes) fica centralizada, com a largura das outras. */
+   diferença entre as alturas de um par vira respiro, não sobra embaixo. A Triton (3 gerações)
+   é a primeira e ocupa a linha inteira, com as faixas lado a lado; as outras 12 fazem 6 pares. */
 .mkc-pill { justify-content: center; }
-.mkc-pills > .mkc-pill:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 4px); }
+.mkc-pill--full { grid-column: 1 / -1; }
+.mkc-pill--full small span { white-space: nowrap; }
 .mkc-compat__note { margin-top: 14px; color: var(--mkc-muted); font-size: .82rem; line-height: 1.45; }
 .mkc-compat__note strong { color: var(--mkc-text); }
 /* "GIF" de fotos de clientes (rodada 3): so existe quando compat-fotos.json tem fotos.
@@ -428,9 +429,7 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
   .mkc-compat { padding: 28px 34px 30px; }
   .mkc-compat h2 { font-size: 2.2rem; }
   .mkc-pills { gap: 12px; }
-  .mkc-compat:not(.mkc-compat--gif) .mkc-pills { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .mkc-pills > .mkc-pill:last-child:nth-child(odd) { width: calc(50% - 6px); }
-  .mkc-compat:not(.mkc-compat--gif) .mkc-pills > .mkc-pill:last-child { grid-column: auto; justify-self: stretch; width: auto; }  .mkc-pill { padding: 12px 20px 13px; border-radius: 14px; }
+  .mkc-compat:not(.mkc-compat--gif) .mkc-pills { grid-template-columns: repeat(3, minmax(0, 1fr)); }  .mkc-pill { padding: 12px 20px 13px; border-radius: 14px; }
   .mkc-pill strong { font-size: 1rem; }
   .mkc-pill small { font-size: .82rem; }
   .mkc-compat__note { font-size: .9rem; }
@@ -887,22 +886,21 @@ html, body { max-width: 100%; overflow-x: hidden; background: #f1f0f0; }
      gerar_pacote.py; com a lista vazia o marcador some e a seção fica como era. Ver
      MONTAGEM.md, "Fotos de clientes na Compatibilidade".
      06/11 (a dona): a ordem das pílulas casa as alturas na grade de 2 colunas, para não sobrar
-     caixa cinza em branco. Poer foi trocada com Ranger e S10 com Amarok, e a Triton fica de
-     frente com a Amarok, cujo nome quebra em 2 linhas na maioria dos celulares. Uma geração por
-     linha, porque a pronta entrega muda por geração (a dona; a Triton na linha inteira durou
-     uma rodada). A última pílula, se sobrar sozinha, fica centralizada (CSS). Picape nova:
-     ponha em par com outra do mesmo número de linhas. -->
+     caixa cinza em branco. Poer foi trocada com Ranger e S10 com Amarok. Versão final do dono:
+     a Triton é a PRIMEIRA, na linha inteira, com as 3 gerações lado a lado (mkc-pill--full);
+     as outras 12 formam 6 pares sem sobra. Picape nova: ponha em par com outra do mesmo
+     número de linhas e mantenha par o total fora da Triton. -->
 <section class="mkc-section mkc-block mkc-full" id="compatibilidade">
   <div class="mkc-inner">
     <div class="mkc-compat mkc-compat--gif">
       <p class="mkc-eyebrow">Compatibilidade</p>
       <h2>O encaixe certo para a sua picape</h2>
       <ul class="mkc-pills">
+        <li class="mkc-pill mkc-pill--full"><strong>Mitsubishi Triton</strong><small><span>2008 a 2017</span> · <span>2017 a 2024</span> · <span>2024 a 2026</span></small></li>
         <li class="mkc-pill"><strong>Ford Maverick</strong><small>2022 a 2026</small></li>
         <li class="mkc-pill"><strong>Fiat Titano</strong><small>2024 a 2026</small></li>
         <li class="mkc-pill"><strong>Ford Ranger</strong><small>2013 a 2023<br>2023 a 2026</small></li>
         <li class="mkc-pill"><strong>Toyota Hilux</strong><small>2006 a 2015<br>2015 a 2026</small></li>
-        <li class="mkc-pill"><strong>Mitsubishi Triton</strong><small>2008 a 2017<br>2017 a 2024<br>2024 a 2026</small></li>
         <li class="mkc-pill"><strong>Volkswagen Amarok</strong><small>2012 a 2026</small></li>
         <li class="mkc-pill"><strong>Chevrolet S10</strong><small>2012 a 2026</small></li>
         <li class="mkc-pill"><strong>Nissan Frontier</strong><small>2017 a 2026</small></li>
